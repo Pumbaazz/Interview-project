@@ -5,7 +5,7 @@
   align-items: center;
   justify-content: center;
   color: white;
-  background-image: linear-gradient(79deg, #7439db, #C66FBC 48%, #F7944D);
+  background-image: linear-gradient(79deg, #39db41, #6fc3c6 48%, #804df7);
 }
 
 .auth-form-container, .login-form, .register-form {
@@ -25,6 +25,7 @@
 label {
   text-align: left;
   padding: 0.25rem 0;
+  color: rgb(255, 255, 255);
 }
 
 input {
@@ -45,6 +46,18 @@ button {
 
 .link-btn {
   background: none;
-  color: white;
+  color: rgb(0, 0, 255);
   text-decoration: underline;
+}
+
+.errorForm{
+  color: red;
+  background-color: aquamarine;
+  border-radius: 0.25rem;
+}
+
+.notifyBanner{
+  color: red;
+  background-color: aquamarine;
+  border-radius: 0.25rem;
 }
