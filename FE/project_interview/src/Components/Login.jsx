@@ -25,6 +25,8 @@ export const Login = (props) => {
       });
 
       if (response.status === 200){
+        const data = await response.json();
+        localStorage.setItem('jwtToken', data.token);  
         navigate("/dashboard");
       }
       

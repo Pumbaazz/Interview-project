@@ -1,10 +1,13 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.IdentityModel.Tokens;
 using System.Security.Claims;
 using System.Text;
 using WebAPI.Helper.ApplicationDbContext;
-using WebAPI.Model;
-using WebAPI.ExceptionHandling;
+using WebAPI.Model.Queries;
+using Microsoft.Extensions.Configuration;
+using System.IdentityModel.Tokens.Jwt;
+using Newtonsoft.Json.Linq;
 
 namespace WebAPI.Controllers
 {
@@ -39,9 +42,25 @@ namespace WebAPI.Controllers
             {
                 return Unauthorized();
             }
-            // Refactor return JWT
 
-            return Ok(user);
+            var claims = new List<Claim>
+                {
+                    new Claim(ClaimTypes.NameIdentifier, user.Id.ToString()),
+                    new Claim(ClaimTypes.Name, user.Name),
+                    new Claim(ClaimTypes.Email, user.Email),
+                };
+            var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes("my super secret key with 32 bytes"));
+            var creds = new SigningCredentials(key, SecurityAlgorithms.HmacSha256);
+
+            var tokenOptions = new JwtSecurityToken(
+                issuer: "JwtIssuer",
+                audience: "JwtAudience",
+                claims: claims,
+                expires: DateTime.UtcNow.AddMinutes(30),
+                signingCredentials: creds
+            );
+
+            return Ok(new { token = new JwtSecurityTokenHandler().WriteToken(tokenOptions) });
         }
 
         [HttpPost]

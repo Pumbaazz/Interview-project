@@ -1,4 +1,4 @@
-﻿namespace WebAPI.Model
+﻿namespace WebAPI.Model.Queries
 {
     public class LoginModel
     {

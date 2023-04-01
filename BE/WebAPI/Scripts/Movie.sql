@@ -13,13 +13,9 @@ CREATE TABLE movies (
     PRIMARY KEY (movie_id)
 );
 
-CREATE TABLE likes (
-    like_id SERIAL,
-    user_id INT NOT NULL,
-    movie_id INT NOT NULL,
-    PRIMARY KEY (like_id),
-    FOREIGN KEY (user_id) REFERENCES Users(user_id),
-    FOREIGN KEY (movie_id) REFERENCES Movies(movie_id)
-);
-
 INSERT INTO public."Users" ("Name" , "Email", "Password" ) VALUES ('John Smith', 'admin@gmail.com', 'password');
+
+INSERT INTO public."Movies"("Title","Path") VALUES
+ ('The Shawshank Redemption','https://www.imdb.com/title/tt0111161/mediaviewer/rm1644259072/')
+,('The Godfather','https://www.imdb.com/title/tt0068646/mediaviewer/rm2979155456/')
+,('The Dark Knight','https://www.imdb.com/title/tt0468569/mediaviewer/rm3879834624/');
