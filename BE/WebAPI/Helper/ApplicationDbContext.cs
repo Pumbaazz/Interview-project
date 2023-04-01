@@ -22,7 +22,6 @@ namespace WebAPI.Helper.ApplicationDbContext
         }
 
         public DbSet<User> Users { get; set; }
-        public DbSet<Likes> Likes { get; set; }
         public DbSet<Movies> Movies { get; set; }
     }
 }

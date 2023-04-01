@@ -1,74 +1,104 @@
 import React, { useEffect, useState } from 'react';
 import jwt_decode from 'jwt-decode';
+import axios from 'axios';
 import '../App.css';
 import { useNavigate } from 'react-router-dom';
 
-const DashboardPage = () => {
-  const [movies, setMovies] = useState([
-    {
-      id: 1,
-      title: 'The Godfather',
-      thumbnail: 'https://www.imdb.com/title/tt0111161/mediaviewer/rm1644259072/',
-      likes: 10,
-    },
-    {
-      id: 2,
-      title: 'The Shaw shank Redemption',
-      thumbnail: 'https://kenh14cdn.com/Images/Uploaded/Share/2010/01/12/000113CineSR12.jpg',
-      likes: 15,
-    },
-    {
-      id: 3,
-      title: 'The Dark Knight',
-      thumbnail: 'https://www.imdb.com/title/tt0468569/mediaviewer/rm3879834624/',
-      likes: 20,
-    },
-  ]);
+export const DashboardPage = (props) => {
+  const [userName, setUserName] = useState("");
+  const [movies, setMovies] = useState([]);
   const navigate = useNavigate();
 
-  const [userName, setUserName] = useState("");
+  // Hook get movies data.
+  useEffect(() => {
+    fetch('https://localhost:7244/api/get-movies')
+      .then(response => response.json())
+      .then(data => setMovies(data));
+  }, []);
+
   // Hook get user name from token.
   useEffect(() => {
     const token = localStorage.getItem('jwtToken');
-    if(!token){
+    if (!token) {
       navigate("/");
       return;
     }
     const decoded = jwt_decode(token);
     setUserName(decoded["http://schemas.xmlsoap.org/ws/2005/05/identity/claims/name"]);
-  },[navigate]);
+  }, [navigate]);
 
   // Handle action like button.
-  const handleLike = (id) => {
-    const updatedMovies = movies.map((movie) => {
-      if (movie.id === id) {
-        return {
-          ...movie,
-          likes: movie.likes + 1,
-        };
-      }
-      return movie;
-    });
-    setMovies(updatedMovies);
+  // const handleLike = async (id) => {
+  //   const updatedMovies = movies.map((movie) => {
+  //     if (movie.movieId === id) {
+  //       return {
+  //         ...movie,
+  //         likes: movie.likes + 1,
+  //       };
+  //     }
+  //     return movie;
+  //   });
+
+  //   const updateMovie = updatedMovies.find(movie => movie.id === id);
+  //   await fetch(`https://localhost:7244/api/like/${updateMovie.movieId}`,{
+  //     method: 'PUT',
+  //     headers: {
+  //       'Content-Type': 'application/json'
+  //     },
+  //     body: JSON.stringify({})    
+  //   });
+  //   setMovies(updatedMovies);
+  // };
+const handleLike = (movie) => {
+    console.log(movie);
+    axios.put(`https://localhost:7244/api/like/${movie.movieId}`)
+      .then(response => {
+        const updatedMovie = response.data;
+        setMovies(movies.map(m => m.movieId === updatedMovie.movieId ? updatedMovie : m));
+      })
+      .catch(error => {
+        console.log(error);
+      });
   };
 
+
   // Handle action dislike button.
-  const handleDislike = (id) => {
-    const updatedMovies = movies.map((movie) => {
-      if (movie.id === id) {
-        return {
-          ...movie,
-          likes: movie.likes - 1,
-        };
-      }
-      return movie;
-    });
-    setMovies(updatedMovies);
+  // const handleDislike = async (id) => {
+  //   const updatedMovies = movies.map((movie) => {
+  //     if (movie.id === id) {
+  //       return {
+  //         ...movie,
+  //         likes: movie.likes - 1,
+  //       };
+  //     }
+  //     return movie;
+  //   });
+
+  //   const updateMovie = updatedMovies.find(movie => movie.id === id);
+  //   await fetch(`https://localhost:7244/api/dislike/${updateMovie.movieId}`,{
+  //     method: 'PUT',
+  //     headers: {
+  //       'Content-Type': 'application/json'
+  //     },
+  //     body: JSON.stringify({})    
+  //   });
+  //   setMovies(updatedMovies);
+  // };
+  const handleDislike = (movie) => {
+    axios.put(`https://localhost:7244/api/dislike/${movie.movieId}`)
+      .then(response => {
+        const updatedMovie = response.data;
+        setMovies(movies.map(m => m.movieId === updatedMovie.movieId ? updatedMovie : m));
+      })
+      .catch(error => {
+        console.log(error);
+      });
   };
+
 
   const handleLogout = () => {
     localStorage.removeItem('jwtToken');
-    navigate("/")
+    navigate("/");
   };
 
   return (
@@ -76,21 +106,19 @@ const DashboardPage = () => {
       <h1>Dashboard</h1>
       <header>
         <h1>Welcome, {userName}!</h1>
-        <button onClick={handleLogout}>Logout</button>
+        <button onClick={() => handleLogout()}>Logout</button>
       </header>
       <ul>
         {movies.map((movie) => (
           <li key={movie.id}>
-            <img src={movie.thumbnail} alt={movie.title} />
+            <img src={movie.path} alt={movie.title} />
             <h2>{movie.title}</h2>
             <p>Likes: {movie.likes}</p>
-            <button onClick={() => handleLike(movie.id)}>Like</button>
-            <button onClick={() => handleDislike(movie.id)}>Dislike</button>
+            <button onClick={() => handleLike(movie)}>Like</button>
+            <button onClick={() => handleDislike(movie)}>Dislike</button>
           </li>
         ))}
       </ul>
     </div>
   );
-}
-
-export default DashboardPage;
+};

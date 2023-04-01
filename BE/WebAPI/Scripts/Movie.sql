@@ -1,21 +1,6 @@
-﻿CREATE TABLE users (
-    user_id SERIAL,
-    name VARCHAR(50) NOT NULL,
-    email VARCHAR(100) NOT NULL UNIQUE,
-    password VARCHAR(100) NOT NULL,
-    PRIMARY KEY (user_id)
-);
+﻿INSERT INTO public."Users" ("Name" , "Email", "Password" ) VALUES ('John Smith', 'admin@gmail.com', 'password');
 
-CREATE TABLE movies (
-    movie_id SERIAL,
-    title VARCHAR(100) NOT NULL,
-    path VARCHAR(100) NOT NULL,
-    PRIMARY KEY (movie_id)
-);
-
-INSERT INTO public."Users" ("Name" , "Email", "Password" ) VALUES ('John Smith', 'admin@gmail.com', 'password');
-
-INSERT INTO public."Movies"("Title","Path") VALUES
- ('The Shawshank Redemption','https://www.imdb.com/title/tt0111161/mediaviewer/rm1644259072/')
-,('The Godfather','https://www.imdb.com/title/tt0068646/mediaviewer/rm2979155456/')
-,('The Dark Knight','https://www.imdb.com/title/tt0468569/mediaviewer/rm3879834624/');
+INSERT INTO public."Movies" ("Title","Path","Likes") VALUES
+	 ('The Shawshank Redemption','https://traditiononline.org/wp-content/uploads/2019/11/13-Best-Shawshank.jpg',10),
+	 ('The Godfather','https://www.lab111.nl/wp-content/uploads/2022/01/TGF50_INTL_DIGITAL_PAYOFF_1_SHEET__NED.jpg',12),
+	 ('The Dark Knight','https://m.media-amazon.com/images/I/91KkWf50SoL._AC_SL1500_.jpg',5);

@@ -11,7 +11,7 @@ using WebAPI.Helper.ApplicationDbContext;
 namespace WebAPI.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20230331080616_CreateTable")]
+    [Migration("20230401131359_CreateTable")]
     partial class CreateTable
     {
         /// <inheritdoc />
@@ -24,25 +24,6 @@ namespace WebAPI.Migrations
 
             NpgsqlModelBuilderExtensions.UseIdentityByDefaultColumns(modelBuilder);
 
-            modelBuilder.Entity("WebAPI.Model.Likes", b =>
-                {
-                    b.Property<int>("LikeId")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("integer");
-
-                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("LikeId"));
-
-                    b.Property<int>("MovieId")
-                        .HasColumnType("integer");
-
-                    b.Property<int>("UserId")
-                        .HasColumnType("integer");
-
-                    b.HasKey("LikeId");
-
-                    b.ToTable("Likes");
-                });
-
             modelBuilder.Entity("WebAPI.Model.Movies", b =>
                 {
                     b.Property<int>("MovieId")
@@ -50,6 +31,9 @@ namespace WebAPI.Migrations
                         .HasColumnType("integer");
 
                     NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("MovieId"));
+
+                    b.Property<int>("Likes")
+                        .HasColumnType("integer");
 
                     b.Property<string>("Path")
                         .IsRequired()

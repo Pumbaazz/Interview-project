@@ -23,6 +23,6 @@ namespace WebAPI.Model
         /// <summary>
         /// Gets or sets the user react to movie.
         /// </summary>
-        //public List<Likes>? Likes { get; set; }
+        public int Likes { get; set; }
     }
 }
