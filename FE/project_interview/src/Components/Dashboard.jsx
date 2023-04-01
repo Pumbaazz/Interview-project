@@ -28,29 +28,7 @@ export const DashboardPage = (props) => {
   }, [navigate]);
 
   // Handle action like button.
-  // const handleLike = async (id) => {
-  //   const updatedMovies = movies.map((movie) => {
-  //     if (movie.movieId === id) {
-  //       return {
-  //         ...movie,
-  //         likes: movie.likes + 1,
-  //       };
-  //     }
-  //     return movie;
-  //   });
-
-  //   const updateMovie = updatedMovies.find(movie => movie.id === id);
-  //   await fetch(`https://localhost:7244/api/like/${updateMovie.movieId}`,{
-  //     method: 'PUT',
-  //     headers: {
-  //       'Content-Type': 'application/json'
-  //     },
-  //     body: JSON.stringify({})    
-  //   });
-  //   setMovies(updatedMovies);
-  // };
-const handleLike = (movie) => {
-    console.log(movie);
+  const handleLike = (movie) => {
     axios.put(`https://localhost:7244/api/like/${movie.movieId}`)
       .then(response => {
         const updatedMovie = response.data;
@@ -63,27 +41,6 @@ const handleLike = (movie) => {
 
 
   // Handle action dislike button.
-  // const handleDislike = async (id) => {
-  //   const updatedMovies = movies.map((movie) => {
-  //     if (movie.id === id) {
-  //       return {
-  //         ...movie,
-  //         likes: movie.likes - 1,
-  //       };
-  //     }
-  //     return movie;
-  //   });
-
-  //   const updateMovie = updatedMovies.find(movie => movie.id === id);
-  //   await fetch(`https://localhost:7244/api/dislike/${updateMovie.movieId}`,{
-  //     method: 'PUT',
-  //     headers: {
-  //       'Content-Type': 'application/json'
-  //     },
-  //     body: JSON.stringify({})    
-  //   });
-  //   setMovies(updatedMovies);
-  // };
   const handleDislike = (movie) => {
     axios.put(`https://localhost:7244/api/dislike/${movie.movieId}`)
       .then(response => {

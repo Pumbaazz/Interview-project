@@ -31,33 +31,33 @@ namespace WebAPI.Controllers
 
         [HttpPut]
         [Route("like/{movieId}")]
-        public async Task<IActionResult> UpdateReactionLike(int movieId)
+        public async Task<Movies> UpdateReactionLike(int movieId)
         {
             var movie = MovieVoteDbContext.Movies.FirstOrDefault(x => x.MovieId == movieId);
             if(movie == null) 
             {
-                return BadRequest();
+                throw new BadHttpRequestException("An error occurred. Please try again later.");
             }
             movie.Likes++;
             await MovieVoteDbContext.SaveChangesAsync();
-            return Ok();
+            return movie;
         }
 
         [HttpPut]
         [Route("dislike/{movieId}")]
-        public async Task<IActionResult> UpdateReactionDislike(int movieId)
+        public async Task<Movies> UpdateReactionDislike(int movieId)
         {
             var movie = MovieVoteDbContext.Movies.FirstOrDefault(x => x.MovieId == movieId);
             if(movie == null) 
             {
-                return BadRequest();
+                throw new BadHttpRequestException("An error occurred. Please try again later.");
             }
-            if(movie.Likes > 0)
+            if (movie.Likes > 0)
             {
                 movie.Likes--;
             }
             await MovieVoteDbContext.SaveChangesAsync();
-            return Ok();
+            return movie;
         }
     }
 }
