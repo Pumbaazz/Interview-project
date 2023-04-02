@@ -17,6 +17,7 @@ export const Register = (props) => {
   async function handleRegister(e){
     try {
       var json = JSON.stringify({ email: email, password: password, name: user_name })
+      // Request create new user.
       var response = await fetch('https://localhost:7244/api/sign-up', {
         headers: {
           'Content-Type': 'application/json'
@@ -29,6 +30,7 @@ export const Register = (props) => {
         setMessage("Create user successfully!.")
       }
       else {
+        // Handle exception.
         switch(response.status){
           case 409:
             setMessage("User is existed. Please try again.");
@@ -79,7 +81,7 @@ export const Register = (props) => {
           id="password"
           name="password"
         />
-        <button type="submit">Register</button>
+        <button className="c-button" type="submit">Register</button>
       </form>
       <button className="link-btn" onClick={() => navigate("/")}>
         Already have an account? Login here.

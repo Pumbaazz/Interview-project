@@ -1,9 +1,6 @@
-﻿using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Mvc;
-using System.Data.Entity;
+﻿using Microsoft.AspNetCore.Mvc;
 using WebAPI.Helper.ApplicationDbContext;
 using WebAPI.Model;
-using WebAPI.Model.Queries;
 
 namespace WebAPI.Controllers
 {
@@ -21,6 +18,10 @@ namespace WebAPI.Controllers
             MovieVoteDbContext = movieVoteDbContext;
         }
 
+        /// <summary>
+        /// Get all movies from database.
+        /// </summary>
+        /// <returns>List all movie.</returns>
         [HttpGet]
         [Route("get-movies")]
         public ActionResult<List<Movies>> GetAllMovies()
@@ -29,6 +30,11 @@ namespace WebAPI.Controllers
             return Ok(result);
         }
 
+        /// <summary>
+        /// Update like number when action is like.
+        /// </summary>
+        /// <param name="movieId">The movie ID.</param>
+        /// <returns>Movie modified.</returns>
         [HttpPut]
         [Route("like/{movieId}")]
         public async Task<Movies> UpdateReactionLike(int movieId)
@@ -39,10 +45,15 @@ namespace WebAPI.Controllers
                 throw new BadHttpRequestException("An error occurred. Please try again later.");
             }
             movie.Likes++;
-            await MovieVoteDbContext.SaveChangesAsync();
+            await MovieVoteDbContext.SaveChangesAsync().ConfigureAwait(false);
             return movie;
         }
 
+        /// <summary>
+        /// Update like number when action is dislike.
+        /// </summary>
+        /// <param name="movieId">The movie ID.</param>
+        /// <returns>Movie modified.</returns>
         [HttpPut]
         [Route("dislike/{movieId}")]
         public async Task<Movies> UpdateReactionDislike(int movieId)
@@ -56,7 +67,7 @@ namespace WebAPI.Controllers
             {
                 movie.Likes--;
             }
-            await MovieVoteDbContext.SaveChangesAsync();
+            await MovieVoteDbContext.SaveChangesAsync().ConfigureAwait(false);
             return movie;
         }
     }

@@ -11,7 +11,7 @@ using WebAPI.Helper.ApplicationDbContext;
 namespace WebAPI.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20230401131359_CreateTable")]
+    [Migration("20230402032611_CreateTable")]
     partial class CreateTable
     {
         /// <inheritdoc />

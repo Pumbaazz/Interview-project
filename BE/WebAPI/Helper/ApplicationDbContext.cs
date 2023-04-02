@@ -1,5 +1,4 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using Npgsql;
 using WebAPI.Model;
 
 namespace WebAPI.Helper.ApplicationDbContext
@@ -19,6 +18,10 @@ namespace WebAPI.Helper.ApplicationDbContext
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
+            modelBuilder.Entity<User>()
+                .HasKey(p => p.Id);
+            modelBuilder.Entity<Movies>()
+                .HasKey(p => p.MovieId);
         }
 
         public DbSet<User> Users { get; set; }

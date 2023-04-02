@@ -3,6 +3,8 @@ import jwt_decode from 'jwt-decode';
 import axios from 'axios';
 import '../App.css';
 import { useNavigate } from 'react-router-dom';
+import 'bootstrap/dist/css/bootstrap.min.css';
+import { Row, Col, Card, Navbar, Button, Nav } from 'react-bootstrap';
 
 export const DashboardPage = (props) => {
   const [userName, setUserName] = useState("");
@@ -52,30 +54,35 @@ export const DashboardPage = (props) => {
       });
   };
 
-
+  // Handle logout button
   const handleLogout = () => {
     localStorage.removeItem('jwtToken');
     navigate("/");
   };
 
   return (
-    <div>
-      <h1>Dashboard</h1>
-      <header>
-        <h1>Welcome, {userName}!</h1>
-        <button onClick={() => handleLogout()}>Logout</button>
-      </header>
-      <ul>
+    <div className="container">
+      <Navbar className="nav nav-pills">
+        <Nav className="align-self-center">Welcome, {userName}!</Nav>
+        <Nav.Link variant="outline-primary" onClick={() => handleLogout()}>Logout</Nav.Link>
+      </Navbar>
+      <Row>
         {movies.map((movie) => (
-          <li key={movie.id}>
-            <img src={movie.path} alt={movie.title} />
-            <h2>{movie.title}</h2>
-            <p>Likes: {movie.likes}</p>
-            <button onClick={() => handleLike(movie)}>Like</button>
-            <button onClick={() => handleDislike(movie)}>Dislike</button>
-          </li>
+          <Row className="p-3 border" key={movie.id}>
+            <Col>
+              <img className="img-fluid w-100 c-img gx-5" src={movie.path} alt={movie.title} />
+            </Col>
+            <Col>
+              <h5 className="card-title">{movie.title}</h5>
+              <Card.Body>
+                <h6 className="card-text">Likes: {movie.likes}</h6>
+                <Button variant="success" className="m-1" onClick={() => handleLike(movie)}>Like</Button>
+                <Button variant="danger" onClick={() => handleDislike(movie)}>Dislike</Button>
+              </Card.Body>
+            </Col>
+          </Row>
         ))}
-      </ul>
+      </Row>
     </div>
   );
 };

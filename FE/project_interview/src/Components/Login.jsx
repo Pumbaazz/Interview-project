@@ -1,5 +1,7 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import '../App.css'
+import 'bootstrap/dist/css/bootstrap.min.css';
 
 export const Login = (props) => {
   const navigate = useNavigate();
@@ -16,6 +18,7 @@ export const Login = (props) => {
   async function handleLogin(e) {
     try {
       var json = JSON.stringify({ email: email, password: password })
+      // Fetch login data.
       var response = await fetch('https://localhost:7244/api/login', {
         headers: {
           'Content-Type': 'application/json'
@@ -29,8 +32,8 @@ export const Login = (props) => {
         localStorage.setItem('jwtToken', data.token);  
         navigate("/dashboard");
       }
-      
       else {
+        // Handle exception.
         if (response.status === 401) {
           setErrorMessage("User not found. Please try again.");
         }
@@ -67,7 +70,7 @@ export const Login = (props) => {
           id="password"
           name="password"
         />
-        <button type="submit">Log In</button>
+        <button className="c-button" type="submit">Log In</button>
       </form>
       <button className="link-btn" onClick={() => navigate("/sign-up")}>
         Don't have an account? Register here.

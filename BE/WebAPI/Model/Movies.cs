@@ -1,4 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
+
 
 namespace WebAPI.Model
 {
@@ -8,6 +10,7 @@ namespace WebAPI.Model
         /// Gets or sets the movie ID.
         /// </summary>
         [Key]
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int MovieId { get; set; }
 
         /// <summary>

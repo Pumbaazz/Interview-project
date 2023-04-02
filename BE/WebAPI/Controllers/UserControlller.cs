@@ -20,6 +20,10 @@ namespace WebAPI.Controllers
         /// </summary>
         public ApplicationDbContext MovieVoteDbContext;
 
+        /// <summary>
+        /// Constructor
+        /// </summary>
+        /// <param name="movieVoteDbContext">MovieVoteDbContext.</param>
         public UserControlller(ApplicationDbContext movieVoteDbContext)
         {
             MovieVoteDbContext = movieVoteDbContext;
@@ -63,6 +67,11 @@ namespace WebAPI.Controllers
             return Ok(new { token = new JwtSecurityTokenHandler().WriteToken(tokenOptions) });
         }
 
+        /// <summary>
+        /// Create new user.
+        /// </summary>
+        /// <param name="model">New user data payload.</param>
+        /// <returns>Status code.</returns>
         [HttpPost]
         [Route("sign-up")]
         public async Task<IActionResult> SignUp([FromBody] SignUpModel model)
