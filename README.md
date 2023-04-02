@@ -1,4 +1,17 @@
-[TOC]
+- [Interview-project](#interview-project)
+  * [Database design](#database-design)
+  * [Api design](#api-design)
+    + [User Controller](#user-controller)
+      - [Login](#login)
+      - [Sign Up](#sign-up)
+    + [Movie Controller](#movie-controller)
+      - [Get all movies](#get-all-movies)
+      - [Like movies](#like-movies)
+      - [Dislike movies](#dislike-movies)
+  * [Demo video](#demo-video)
+
+<small><i><a href='http://ecotrust-canada.github.io/markdown-toc/'>Table of contents generated with markdown-toc</a></i></small>
+
 
 # Interview-project
 
