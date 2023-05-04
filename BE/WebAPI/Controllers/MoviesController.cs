@@ -1,6 +1,8 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using MediatR;
+using Microsoft.AspNetCore.Mvc;
 using WebAPI.Helper.ApplicationDbContext;
 using WebAPI.Model;
+using WebAPI.Commands;
 
 namespace WebAPI.Controllers
 {
@@ -13,9 +15,15 @@ namespace WebAPI.Controllers
         /// </summary>
         public ApplicationDbContext MovieVoteDbContext;
 
-        public MoviesController(ApplicationDbContext movieVoteDbContext)
+        /// <summary>
+        /// The mediator.
+        /// </summary>
+        public IMediator _mediator;
+
+        public MoviesController(ApplicationDbContext movieVoteDbContext, IMediator mediator)
         {
             MovieVoteDbContext = movieVoteDbContext;
+            _mediator = mediator;
         }
 
         /// <summary>
@@ -24,10 +32,12 @@ namespace WebAPI.Controllers
         /// <returns>List all movie.</returns>
         [HttpGet]
         [Route("get-movies")]
-        public ActionResult<List<Movies>> GetAllMovies()
+        public async Task<IEnumerable<Movies>> GetAllMovies()
         {
-            var result = MovieVoteDbContext.Movies.ToList();
-            return Ok(result);
+            //var result = await MovieVoteDbContext.Movies.ToListAsync().ConfigureAwait(false);
+            //return Ok(result);
+            var result = await _mediator.Send(new GetAllMoviesCommand()).ConfigureAwait(false);
+            return result;
         }
 
         /// <summary>

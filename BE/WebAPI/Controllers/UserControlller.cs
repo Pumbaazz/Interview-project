@@ -4,10 +4,10 @@ using Microsoft.IdentityModel.Tokens;
 using System.Security.Claims;
 using System.Text;
 using WebAPI.Helper.ApplicationDbContext;
-using WebAPI.Model.Queries;
 using Microsoft.Extensions.Configuration;
 using System.IdentityModel.Tokens.Jwt;
 using Newtonsoft.Json.Linq;
+using WebAPI.Queries;
 
 namespace WebAPI.Controllers
 {
@@ -35,7 +35,7 @@ namespace WebAPI.Controllers
         /// <returns>Data of user login successfully.</returns>
         [HttpPost]
         [Route("login")]
-        public async Task<IActionResult> Login([FromBody] LoginModel model)
+        public async Task<IActionResult> Login([FromBody] LoginQuery model)
         {
             if(string.IsNullOrWhiteSpace(model.Email) || string.IsNullOrWhiteSpace(model.Password)) 
             {
@@ -74,7 +74,7 @@ namespace WebAPI.Controllers
         /// <returns>Status code.</returns>
         [HttpPost]
         [Route("sign-up")]
-        public async Task<IActionResult> SignUp([FromBody] SignUpModel model)
+        public async Task<IActionResult> SignUp([FromBody] SignUpQuery model)
         {
             if (string.IsNullOrWhiteSpace(model.Email) || string.IsNullOrWhiteSpace(model.Password) || string.IsNullOrWhiteSpace(model.Name))
             {

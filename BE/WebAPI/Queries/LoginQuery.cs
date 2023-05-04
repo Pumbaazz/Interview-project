@@ -1,6 +1,6 @@
-﻿namespace WebAPI.Model.Queries
+﻿namespace WebAPI.Queries
 {
-    public class LoginModel
+    public class LoginQuery
     {
         /// <summary>
         /// Gets or sets the user's email.

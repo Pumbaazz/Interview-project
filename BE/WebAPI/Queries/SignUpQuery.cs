@@ -1,6 +1,6 @@
-﻿namespace WebAPI.Model.Queries
+﻿namespace WebAPI.Queries
 {
-    public class SignUpModel
+    public class SignUpQuery
     {
         /// <summary>
         /// Gets or sets the user's name.
