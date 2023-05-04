@@ -1,14 +1,8 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
-using Microsoft.IdentityModel.Tokens;
-using System.Security.Claims;
-using System.Text;
 using WebAPI.Repository.ApplicationDbContext;
-using System.IdentityModel.Tokens.Jwt;
-using WebAPI.Commands;
 using WebAPI.Features.Login;
-using WebAPI.Features.GetAllMovies;
 using MediatR;
+using WebAPI.Features.SignUp;
 
 namespace WebAPI.Controllers
 {
@@ -42,9 +36,9 @@ namespace WebAPI.Controllers
         /// <returns>Data of user login successfully.</returns>
         [HttpPost]
         [Route("login")]
-        public async Task<IActionResult> Login([FromBody] LoginCommand model)
+        public async Task<IActionResult> Login([FromBody] LoginCommand command)
         {
-            var result = await _mediator.Send(model).ConfigureAwait(false);
+            var result = await _mediator.Send(command).ConfigureAwait(false);
             return result;
         }
 
@@ -55,23 +49,10 @@ namespace WebAPI.Controllers
         /// <returns>Status code.</returns>
         [HttpPost]
         [Route("sign-up")]
-        public async Task<IActionResult> SignUp([FromBody] SignUpCommand model)
+        public async Task<IActionResult> SignUp([FromBody] SignUpCommand command)
         {
-            if (string.IsNullOrWhiteSpace(model.Email) || string.IsNullOrWhiteSpace(model.Password) || string.IsNullOrWhiteSpace(model.Name))
-            {
-                return BadRequest();
-            }
-
-            var user = await MovieVoteDbContext.Users.FirstOrDefaultAsync(x => x.Email == model.Email).ConfigureAwait(false);
-            if(user != null)
-            {
-                // 409 Conflicts
-                return Conflict();
-            }
-
-            MovieVoteDbContext.Users.Add(new Model.User { Email = model.Email, Name = model.Name, Password = model.Password });
-            MovieVoteDbContext.SaveChanges();
-            return Ok();
+            var result = await _mediator.Send(command).ConfigureAwait(false);
+            return result;
         }
     }
 }
