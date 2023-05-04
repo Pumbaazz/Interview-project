@@ -1,6 +1,6 @@
-﻿namespace WebAPI.Queries
+﻿namespace WebAPI.Commands
 {
-    public class SignUpQuery
+    public class SignUpCommand
     {
         /// <summary>
         /// Gets or sets the user's name.

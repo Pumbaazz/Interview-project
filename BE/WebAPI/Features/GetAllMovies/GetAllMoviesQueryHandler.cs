@@ -1,24 +1,24 @@
-﻿using WebAPI.Helper.ApplicationDbContext;
-using WebAPI.Commands;
+﻿using WebAPI.Repository.ApplicationDbContext;
 using MediatR;
 using WebAPI.Model;
 using Microsoft.EntityFrameworkCore;
 
-namespace WebAPI.Handlers
+namespace WebAPI.Features.GetAllMovies
 {
-    public class GetAllMoviesHandler : IRequestHandler<GetAllMoviesCommand, IEnumerable<Movies>>
+    // Replace return ienumerable entity -> Dto, create new Dto
+    public class GetAllMoviesQueryHandler : IRequestHandler<GetAllMoviesQuery, IEnumerable<Movies>>
     {
         /// <summary>
         /// Application db context.
         /// </summary>
         public ApplicationDbContext MovieVoteDbContext;
 
-        public GetAllMoviesHandler(ApplicationDbContext movieVoteDbContext)
+        public GetAllMoviesQueryHandler(ApplicationDbContext movieVoteDbContext)
         {
             MovieVoteDbContext = movieVoteDbContext;
         }
 
-        public async Task<IEnumerable<Movies>> Handle(GetAllMoviesCommand request, CancellationToken cancellationToken)
+        public async Task<IEnumerable<Movies>> Handle(GetAllMoviesQuery request, CancellationToken cancellationToken)
         {
             if (request is null)
             {

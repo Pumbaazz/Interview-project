@@ -3,11 +3,12 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
 using System.Security.Claims;
 using System.Text;
-using WebAPI.Helper.ApplicationDbContext;
-using Microsoft.Extensions.Configuration;
+using WebAPI.Repository.ApplicationDbContext;
 using System.IdentityModel.Tokens.Jwt;
-using Newtonsoft.Json.Linq;
-using WebAPI.Queries;
+using WebAPI.Commands;
+using WebAPI.Features.Login;
+using WebAPI.Features.GetAllMovies;
+using MediatR;
 
 namespace WebAPI.Controllers
 {
@@ -21,12 +22,18 @@ namespace WebAPI.Controllers
         public ApplicationDbContext MovieVoteDbContext;
 
         /// <summary>
+        /// The mediator.
+        /// </summary>
+        public IMediator _mediator;
+
+        /// <summary>
         /// Constructor
         /// </summary>
         /// <param name="movieVoteDbContext">MovieVoteDbContext.</param>
-        public UserControlller(ApplicationDbContext movieVoteDbContext)
+        public UserControlller(ApplicationDbContext movieVoteDbContext, IMediator mediator)
         {
             MovieVoteDbContext = movieVoteDbContext;
+            _mediator = mediator;
         }
 
         /// <summary>
@@ -35,36 +42,10 @@ namespace WebAPI.Controllers
         /// <returns>Data of user login successfully.</returns>
         [HttpPost]
         [Route("login")]
-        public async Task<IActionResult> Login([FromBody] LoginQuery model)
+        public async Task<IActionResult> Login([FromBody] LoginCommand model)
         {
-            if(string.IsNullOrWhiteSpace(model.Email) || string.IsNullOrWhiteSpace(model.Password)) 
-            {
-                return BadRequest();
-            }
-            var user = await MovieVoteDbContext.Users.FirstOrDefaultAsync(x => x.Email == model.Email && x.Password == model.Password).ConfigureAwait(false);
-            if (user == null)
-            {
-                return Unauthorized();
-            }
-
-            var claims = new List<Claim>
-                {
-                    new Claim(ClaimTypes.NameIdentifier, user.Id.ToString()),
-                    new Claim(ClaimTypes.Name, user.Name),
-                    new Claim(ClaimTypes.Email, user.Email),
-                };
-            var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes("my super secret key with 32 bytes"));
-            var creds = new SigningCredentials(key, SecurityAlgorithms.HmacSha256);
-
-            var tokenOptions = new JwtSecurityToken(
-                issuer: "JwtIssuer",
-                audience: "JwtAudience",
-                claims: claims,
-                expires: DateTime.UtcNow.AddMinutes(30),
-                signingCredentials: creds
-            );
-
-            return Ok(new { token = new JwtSecurityTokenHandler().WriteToken(tokenOptions) });
+            var result = await _mediator.Send(model).ConfigureAwait(false);
+            return result;
         }
 
         /// <summary>
@@ -74,7 +55,7 @@ namespace WebAPI.Controllers
         /// <returns>Status code.</returns>
         [HttpPost]
         [Route("sign-up")]
-        public async Task<IActionResult> SignUp([FromBody] SignUpQuery model)
+        public async Task<IActionResult> SignUp([FromBody] SignUpCommand model)
         {
             if (string.IsNullOrWhiteSpace(model.Email) || string.IsNullOrWhiteSpace(model.Password) || string.IsNullOrWhiteSpace(model.Name))
             {

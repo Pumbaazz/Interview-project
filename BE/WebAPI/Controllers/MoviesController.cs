@@ -1,8 +1,9 @@
 ﻿using MediatR;
 using Microsoft.AspNetCore.Mvc;
-using WebAPI.Helper.ApplicationDbContext;
+using WebAPI.Repository.ApplicationDbContext;
 using WebAPI.Model;
-using WebAPI.Commands;
+using WebAPI.Features.Login;
+using WebAPI.Features.GetAllMovies;
 
 namespace WebAPI.Controllers
 {
@@ -34,9 +35,7 @@ namespace WebAPI.Controllers
         [Route("get-movies")]
         public async Task<IEnumerable<Movies>> GetAllMovies()
         {
-            //var result = await MovieVoteDbContext.Movies.ToListAsync().ConfigureAwait(false);
-            //return Ok(result);
-            var result = await _mediator.Send(new GetAllMoviesCommand()).ConfigureAwait(false);
+            var result = await _mediator.Send(new GetAllMoviesQuery()).ConfigureAwait(false);
             return result;
         }
 
