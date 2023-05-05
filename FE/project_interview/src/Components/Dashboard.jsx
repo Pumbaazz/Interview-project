@@ -31,7 +31,7 @@ export const DashboardPage = (props) => {
 
   // Handle action like button.
   const handleLike = (movie) => {
-    axios.put(`https://localhost:7244/api/like/${movie.movieId}`)
+    axios.patch(`https://localhost:7244/api/like/${movie.movieId}`)
       .then(response => {
         const updatedMovie = response.data;
         setMovies(movies.map(m => m.movieId === updatedMovie.movieId ? updatedMovie : m));
@@ -44,7 +44,7 @@ export const DashboardPage = (props) => {
 
   // Handle action dislike button.
   const handleDislike = (movie) => {
-    axios.put(`https://localhost:7244/api/dislike/${movie.movieId}`)
+    axios.patch(`https://localhost:7244/api/dislike/${movie.movieId}`)
       .then(response => {
         const updatedMovie = response.data;
         setMovies(movies.map(m => m.movieId === updatedMovie.movieId ? updatedMovie : m));
