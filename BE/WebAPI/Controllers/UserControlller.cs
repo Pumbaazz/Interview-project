@@ -18,7 +18,7 @@ namespace WebAPI.Controllers
         /// <summary>
         /// The mediator.
         /// </summary>
-        public IMediator _mediator;
+        public readonly IMediator _mediator;
 
         /// <summary>
         /// Constructor

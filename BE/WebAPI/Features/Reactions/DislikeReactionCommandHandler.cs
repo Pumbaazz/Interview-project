@@ -31,6 +31,7 @@ namespace WebAPI.Features.GetAllMovies
             {
                 throw new BadHttpRequestException("An error occurred. Please try again later.");
             }
+            
             if (movie.Likes > 0)
             {
                 movie.Likes--;
