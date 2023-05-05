@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Mvc;
 using System.Data.Entity;
 using WebAPI.Features.SignUp;
 using WebAPI.Repository.ApplicationDbContext;
+using WebAPI.Domain.Model;
 
 namespace WebAPI.Features.Login
 {
@@ -32,7 +33,7 @@ namespace WebAPI.Features.Login
                 return Conflict();
             }
 
-            MovieVoteDbContext.Users.Add(new Model.User { Email = command.Email, Name = command.Name, Password = command.Password });
+            MovieVoteDbContext.Users.Add(new User { Email = command.Email, Name = command.Name, Password = command.Password });
             MovieVoteDbContext.SaveChanges();
             return Ok();
         }

@@ -1,7 +1,7 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
-namespace WebAPI.Model
+namespace WebAPI.Domain.Model
 {
     public class User
     {
@@ -26,10 +26,5 @@ namespace WebAPI.Model
         /// Gets or sets the user's password.
         /// </summary>
         public string Password { get; set; } = string.Empty;
-
-        /// <summary>
-        /// Gets or sets the user react to movie.
-        /// </summary>
-        //public List<Likes>? Likes { get; set; }
     }
 }

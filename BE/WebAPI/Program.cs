@@ -22,7 +22,7 @@ builder.Services.AddCors(options =>
 });
 
 builder.Services.AddMediatR(cfg => cfg.RegisterServicesFromAssembly(typeof(Program).Assembly));
-
+builder.Services.AddAutoMapper(typeof(Program).Assembly);
 // Learn more about configuring Swagger/OpenAPI at https://aka.MapControllers           s/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 

@@ -1,6 +1,6 @@
 ﻿using WebAPI.Repository.ApplicationDbContext;
 using MediatR;
-using WebAPI.Model;
+using WebAPI.Domain.Model;
 using Microsoft.EntityFrameworkCore;
 
 namespace WebAPI.Features.GetAllMovies
