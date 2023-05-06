@@ -5,6 +5,7 @@ using Microsoft.EntityFrameworkCore;
 using WebAPI.Domain.DTO;
 using AutoMapper;
 using WebAPI.Features.Reactions;
+using WebAPI.Mapper;
 
 namespace WebAPI.Features.GetAllMovies
 {
@@ -18,10 +19,15 @@ namespace WebAPI.Features.GetAllMovies
 
         private readonly IMapper _mapper;
 
-        public DislikeReactionCommandHandler(ApplicationDbContext movieVoteDbContext, IMapper mapper)
+        public DislikeReactionCommandHandler(ApplicationDbContext movieVoteDbContext)
         {
+            var config = new MapperConfiguration(cfg =>
+            {
+                MovieMapper.CreateMap(cfg);
+            });
+            _mapper = config.CreateMapper();
+
             MovieVoteDbContext = movieVoteDbContext;
-            _mapper = mapper;
         }
 
         public async Task<MoviesDto> Handle(DislikeReactionCommand request, CancellationToken cancellationToken)
