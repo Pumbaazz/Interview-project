@@ -1,6 +1,9 @@
-﻿namespace WebAPI.Model.Queries
+﻿using MediatR;
+using Microsoft.AspNetCore.Mvc;
+
+namespace WebAPI.Features.SignUp
 {
-    public class SignUpModel
+    public class SignUpCommand : IRequest<IActionResult>
     {
         /// <summary>
         /// Gets or sets the user's name.

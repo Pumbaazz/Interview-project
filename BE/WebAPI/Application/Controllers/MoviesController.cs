@@ -1,27 +1,20 @@
 ﻿using MediatR;
 using Microsoft.AspNetCore.Mvc;
-using WebAPI.Repository.ApplicationDbContext;
-using WebAPI.Features.GetAllMovies;
+using WebAPI.Application.Features.GetAllMovies;
 using WebAPI.Domain.DTO;
 using WebAPI.Domain.Model;
-using AutoMapper;
-using WebAPI.Features.Reactions;
+using WebAPI.Application.Features.Reactions;
 
-namespace WebAPI.Controllers
+namespace WebAPI.Application.Controllers
 {
     [ApiController]
     [Route("api/")]
     public class MoviesController : ControllerBase
     {
         /// <summary>
-        /// Application db context.
-        /// </summary>
-        public ApplicationDbContext MovieVoteDbContext;
-
-        /// <summary>
         /// The mediator.
         /// </summary>
-        public readonly IMediator _mediator;
+        private readonly IMediator _mediator;
 
         /// <summary>
         /// The constructor.
@@ -29,10 +22,9 @@ namespace WebAPI.Controllers
         /// <param name="movieVoteDbContext">The movie db context.</param>
         /// <param name="mediator">The mediator.</param>
         /// <param name="mapper">The mapper.</param>
-        public MoviesController(ApplicationDbContext movieVoteDbContext, IMediator mediator)
+        public MoviesController(IMediator mediator)
         {
             _mediator = mediator;
-            MovieVoteDbContext = movieVoteDbContext;
         }
 
         /// <summary>
@@ -56,7 +48,7 @@ namespace WebAPI.Controllers
         [Route("like/{movieId}")]
         public async Task<MoviesDto> UpdateReactionLike(int movieId)
         {
-            var result = await _mediator.Send(new LikeReactionCommand { MovieId = movieId}).ConfigureAwait(false);
+            var result = await _mediator.Send(new LikeReactionCommand { MovieId = movieId }).ConfigureAwait(false);
             return result;
         }
 

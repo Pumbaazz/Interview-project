@@ -1,32 +1,25 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using WebAPI.Repository.ApplicationDbContext;
-using WebAPI.Features.Login;
 using MediatR;
-using WebAPI.Features.SignUp;
+using WebAPI.Application.Features.Login;
+using WebAPI.Application.Features.SignUp;
 
-namespace WebAPI.Controllers
+namespace WebAPI.Application.Controllers
 {
     [ApiController]
     [Route("api/")]
-    public class UserControlller : ControllerBase
+    public class UserController : ControllerBase
     {
-        /// <summary>
-        /// Application db context.
-        /// </summary>
-        public ApplicationDbContext MovieVoteDbContext;
-
         /// <summary>
         /// The mediator.
         /// </summary>
-        public readonly IMediator _mediator;
+        private readonly IMediator _mediator;
 
         /// <summary>
         /// Constructor
         /// </summary>
         /// <param name="movieVoteDbContext">MovieVoteDbContext.</param>
-        public UserControlller(ApplicationDbContext movieVoteDbContext, IMediator mediator)
+        public UserController(IMediator mediator)
         {
-            MovieVoteDbContext = movieVoteDbContext;
             _mediator = mediator;
         }
 

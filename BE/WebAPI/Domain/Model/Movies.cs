@@ -2,7 +2,7 @@
 using System.ComponentModel.DataAnnotations.Schema;
 
 
-namespace WebAPI.Model
+namespace WebAPI.Domain.Model
 {
     public class Movies
     {
