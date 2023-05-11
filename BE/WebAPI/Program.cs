@@ -1,11 +1,24 @@
+// Ignore Spelling: cfg app
+
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.EntityFrameworkCore;
-using WebAPI.Repository.ApplicationDbContext;
+using Microsoft.IdentityModel.Tokens;
+using System.Text;
+using FluentValidation.AspNetCore;
+using System.Reflection;
+using WebAPI.Persistence;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 
-builder.Services.AddControllers();
+#pragma warning disable CS0618 // Type or member is obsolete
+builder.Services.AddControllers()
+                    .AddFluentValidation(options =>
+                    {
+                        options.RegisterValidatorsFromAssembly(Assembly.GetExecutingAssembly());
+                    });
+#pragma warning restore CS0618 // Type or member is obsolete
 
 // Register DbContext
 var connectionString = builder.Configuration.GetConnectionString("DefaultConnection");
@@ -28,6 +41,20 @@ builder.Services.AddEndpointsApiExplorer();
 
 // Remove these for swagger
 builder.Services.AddSwaggerGen();
+
+builder.Services.AddAuthentication(options =>
+{
+    options.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
+    options.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
+    options.DefaultScheme = JwtBearerDefaults.AuthenticationScheme;
+}).AddJwtBearer(o =>
+{
+    o.TokenValidationParameters = new TokenValidationParameters
+    {
+        IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(builder.Configuration["Jwt:Key"]!)),
+    };
+});
+
 
 var app = builder.Build();
 

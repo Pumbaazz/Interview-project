@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import jwt_decode from 'jwt-decode';
+import jwtDecode from 'jwt-decode';
 import axios from 'axios';
 import '../App.css';
 import { useNavigate } from 'react-router-dom';
@@ -25,8 +25,8 @@ export const DashboardPage = (props) => {
       navigate("/");
       return;
     }
-    const decoded = jwt_decode(token);
-    setUserName(decoded["http://schemas.xmlsoap.org/ws/2005/05/identity/claims/name"]);
+    const decoded = jwtDecode(token);
+    setUserName(decoded.Name);
   }, [navigate]);
 
   // Handle action like button.
