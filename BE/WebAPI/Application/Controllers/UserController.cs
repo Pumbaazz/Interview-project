@@ -1,5 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
-using MediatR;
+﻿using MediatR;
+using Microsoft.AspNetCore.Mvc;
 using WebAPI.Application.Features.Login;
 using WebAPI.Application.Features.SignUp;
 

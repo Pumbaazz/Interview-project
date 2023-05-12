@@ -1,9 +1,9 @@
 ﻿using MediatR;
 using Microsoft.AspNetCore.Mvc;
 using WebAPI.Application.Features.GetAllMovies;
+using WebAPI.Application.Features.Reactions;
 using WebAPI.Domain.DTO;
 using WebAPI.Domain.Model;
-using WebAPI.Application.Features.Reactions;
 
 namespace WebAPI.Application.Controllers
 {

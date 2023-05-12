@@ -1,7 +1,5 @@
 ﻿using MediatR;
 using WebAPI.Domain.Model;
-using Microsoft.EntityFrameworkCore;
-using System.Collections.Immutable;
 using WebAPI.Persistence;
 
 namespace WebAPI.Application.Features.GetAllMovies

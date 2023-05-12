@@ -1,14 +1,10 @@
-﻿// Ignore Spelling: Jwt
-
+﻿using System.IdentityModel.Tokens.Jwt;
+using System.Security.Claims;
+using System.Text;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.IdentityModel.Tokens;
-using Microsoft.EntityFrameworkCore;
-using System.IdentityModel.Tokens.Jwt;
-using System.Security.Claims;
-using System.Text;
 using WebAPI.Domain.Model;
-using static Microsoft.EntityFrameworkCore.DbLoggerCategory.Database;
 using WebAPI.Persistence;
 
 namespace WebAPI.Application.Features.Login
