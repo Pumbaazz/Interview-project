@@ -1,206 +1,533 @@
+// define variable
+$maxWidthDesktop: 1440px;
+$maxHeightDesktop: 1024px;
+$contentWidth: 1110px;
+$maxWidthMobile: 375px;
+$maxHeightMobile: 700px;
+$contentMobileWidth: 343px;
+$backgroundColorWhite: #fffdfa;
+$gunMentalColor: #5e607a;
+$darkSpaceBlueColor: #00001a;
+$lightVermillionColor: #f15d51;
+$yellowColor: #e9aa52;
+$silverColor: #c5c6ce;
+
 @font-face {
     font-family: customFont;
     src: url(../fonts/Inter-VariableFont_slntwght.ttf) format(ttf);
 }
 
-// @media screen and (-ms-high-contrast: active), (-ms-high-contrast: none) {
-//     .element {
-//         /* Styles specific to Windows devices */
-//         width: 1440px;
-//         height: 1024px;
-//     }
-// }
-
-body {
-    font-family: "customFont", Arial, sans-serif;
-    margin: 50px 165px 50px;
-}
-
 @media screen and (min-width: 1440px) and (min-height: 1024px) {
-    .navbar {
-        display: inline-block;
-        margin: 0 auto;
+    body {
         width: 100%;
-        text-align: center;
-        ul {
-            display: flex;
-            position: relative;
-            list-style-type: none;
-            justify-content: flex-end;
-            float: right;
-            margin: auto;
-            li {
-                margin-right: 40px;
-                color: #5e607a;
-            }
-            :hover {
+        height: 100%;
+        background-color: $backgroundColorWhite;
+        max-width: $maxWidthDesktop;
+        max-height: $maxHeightDesktop;
+        font-family: "customFont", Arial, sans-serif;
+        margin: 50px 165px 50px;
+
+        .navbar {
+            display: inline-block;
+            margin: 0 auto;
+            // width: 100%;
+            width: $contentWidth;
+            text-align: center;
+
+            .hamburger {
+                display: none;
                 cursor: pointer;
-                color: #f15d51;
+
+                span {
+                    display: block;
+                    width: 25px;
+                    height: 3px;
+                    background-color: #333;
+                    margin-bottom: 5px;
+                    /* Set styles for the hamburger button lines */
+                }
+            }
+
+            .menu {
+                display: flex;
+                position: relative;
+                list-style: none;
+                justify-content: flex-end;
+                float: right;
+                margin: auto;
+
+                li {
+                    margin-left: 40px;
+                    color: $gunMentalColor;
+                }
+
+                :hover {
+                    cursor: pointer;
+                    color: $lightVermillionColor;
+                }
+            }
+
+            img {
+                float: left;
+                width: 60px;
+                height: 40px;
             }
         }
-        img {
-            float: left;
-            width: 60px;
-            height: 40px;
-        }
-    }
 
-    footer {
-        position: fixed;
-        left: 0;
-        bottom: 0;
-    }
+        .container {
+            max-width: $contentWidth;
+            max-height: 511px;
+            display: flex;
+            margin-top: 55px;
+            margin-bottom: 71px;
 
-    .container {
-        max-width: 1110px;
-        max-height: 511px;
-        display: flex;
-        margin-top: 55px;
-        margin-bottom: 71px;
+            overflow: hidden;
+            position: relative;
 
-        overflow: hidden;
-        position: relative;
-        .block-1 {
-            width: 730px;
-            height: 586px;
-            .image-background {
-                overflow: hidden;
-                position: relative;
-                // background-repeat: no-repeat;
-                // background-position: center center;
-                // background-size: cover;
-                img {
+            .block-1 {
+                .image-background {
+                    width: 730px;
+                    height: 300px;
+                    overflow: hidden;
+                    position: relative;
+                    background-image: url("../images/image-web-3-desktop.jpg");
+                    background-repeat: no-repeat;
+                    background-position: center center;
+                    background-size: cover;
                     position: relative;
                     display: flex;
-                    width: 100%;
-                    height: auto;
                 }
-            }
-            .main-title {
-                width: 730px;
-                height: 183px;
-                position: relative;
-                display: flex;
 
-                .title {
-                    width: 350px;
-                    height: 182px;
+                .main-title {
+                    width: 730px;
+                    height: 183px;
                     position: relative;
-                    font-weight: bold;
-                    font-size: 56px;
-                    text-align: left;
-                    text-shadow: 1px 0 #000000;
-                }
-                
-                .detail {
-                    width: 350px;
-                    height: 181px;
-                    position: relative;
-                    margin-left: 30px;
+                    display: flex;
 
-                    span {
+                    .title {
+                        width: 350px;
+                        height: 182px;
                         position: relative;
-                        // left: 545px;
-                        font-size: 15px;
-                        line-height: 26px;
-                        font-style: normal;
-                        font-weight: 400;
-                        color: #5e607a;
+                        font-weight: bold;
+                        font-size: 56px;
+                        text-align: left;
+                        text-shadow: 1px 0 #000000;
                     }
-                    .button-readmore {
-                        width: 185px;
-                        height: 48px;
-                        background-color: #f15d51;
-                        display: flex;
-                        align-items: center;
-                        justify-content: center;
-                        margin-top: 29px;
+
+                    .detail {
+                        width: 350px;
+                        height: 181px;
+                        position: relative;
+                        margin-left: 30px;
 
                         span {
-                            font-weight: 700;
-                            font-size: 14px;
-                            line-height: 24px;
-                            letter-spacing: 4.375px;
-                            text-align: center;
                             position: relative;
-                            color: #fffdfa;
+                            // left: 545px;
+                            font-size: 15px;
+                            line-height: 26px;
+                            font-style: normal;
+                            font-weight: 400;
+                            color: $gunMentalColor;
+                        }
+
+                        .button-readmore {
+                            width: 185px;
+                            height: 48px;
+                            background-color: $lightVermillionColor;
+                            display: flex;
+                            align-items: center;
+                            justify-content: center;
+                            margin-top: 29px;
+
+                            span {
+                                font-weight: 700;
+                                font-size: 14px;
+                                line-height: 24px;
+                                letter-spacing: 4.375px;
+                                text-align: center;
+                                position: relative;
+                                color: #fffdfa;
+                            }
+                        }
+
+                        .button-readmore:hover {
+                            background-color: $darkSpaceBlueColor;
+                            cursor: pointer;
                         }
                     }
-                    .button-readmore:hover {
-                        background-color: #00001a;
-                        cursor: pointer;
+                }
+            }
+
+            .block-2 {
+                margin-left: 30px;
+                position: relative;
+                background-color: $darkSpaceBlueColor;
+                width: 350px;
+                height: 511px;
+
+                p {
+                    padding-top: 32px;
+                    line-height: 40px;
+                    margin: 0px 0px 34px 24px;
+                    color: $yellowColor;
+                    font-size: 40px;
+                    font-style: normal;
+                    font-weight: 700;
+                }
+
+                .news-list {
+                    position: relative;
+                }
+
+                .docs {
+                    width: 302px;
+                    height: 84px;
+                    margin: 31px 26px 31px 26px;
+                    position: relative;
+
+                    .title {
+                        position: relative;
+                        color: #fff;
+                        font-style: normal;
+                        font-weight: 600;
+                        font-size: 20px;
+                        margin-bottom: 8px;
+                        line-height: 24px;
+
+                        :hover {
+                            cursor: pointer;
+                            color: $yellowColor;
+                        }
                     }
+
+                    .detail {
+                        position: relative;
+                        width: 302px;
+                        height: 52px;
+                        font-style: normal;
+                        font-weight: 400;
+                        font-size: 15px;
+                        color: $silverColor;
+                        line-height: 26px;
+                        padding-bottom: 31px;
+                        border-bottom: 1px solid $gunMentalColor;
+                    }
+                }
+
+                .docs-middle {
+                    padding-top: 31px;
+                    padding-bottom: 31px;
+                }
+
+                .docs-bottom {
+                    border-bottom: none;
                 }
             }
         }
-        .block-2 {
-            // left: 760px;
-            margin-left: 30px;
+
+        .block-3 {
+            max-width: $contentWidth;
+            width: 100%;
+            height: 129px;
             position: relative;
-            background-color: #00001a;
-            width: 350px;
-            height: 511px;
-            p {
-                padding-top: 32px;
-                line-height: 40px;
-                margin: 0px 0px 34px 24px;
-                color: #e9aa52;
-                font-size: 40px;
-                font-style: normal;
-                font-weight: 700;
-            }
+            display: flex;
+            margin-top: 71px;
 
-            .news-list {
+            .block-content {
+                width: 350px;
+                height: 129px;
                 position: relative;
-            }
-            .docs {
-                width: 302px;
-                height: 84px;
-                margin: 31px 26px 31px 26px;
-                position: relative;
+                display: inherit;
+                margin-right: 30px;
 
-                .title {
-                    position: relative;
-                    color: #fff;
+                // padding-right: 30px;
+                .banner {
+                    display: inherit;
+                    padding-right: 24px;
+                }
+
+                .content-detail {
+                    width: 226px;
                     font-style: normal;
-                    font-weight: 600;
-                    font-size: 20px;
-                    margin-bottom: 8px;
-                    line-height: 24px;
-                    :hover{
-                        color: #E9AA52;
+
+                    .content-number {
+                        display: inherit;
+                        position: relative;
+                        font-weight: 700;
+                        font-size: 32px;
+                        line-height: 32px;
+                        color: $silverColor;
+                        margin-bottom: 12px;
+                    }
+
+                    .content-title {
+                        display: inherit;
+                        position: relative;
+                        font-weight: 700;
+                        font-size: 18px;
+                        line-height: 24px;
+                        color: $darkSpaceBlueColor;
+                        margin-bottom: 9px;
+                    }
+
+                    .content-title:hover {
+                        cursor: pointer;
+                        color: $lightVermillionColor;
+                    }
+
+                    .content-description {
+                        display: inherit;
+                        position: relative;
+                        font-weight: 400;
+                        font-size: 15px;
+                        line-height: 26px;
+                        color: $gunMentalColor;
                     }
                 }
-                .detail {
-                    position: relative;
-                    width: 302px;
-                    height: 52px;
-                    font-style: normal;
-                    font-weight: 400;
-                    font-size: 15px;
-                    color: #c5c6ce;
-                    line-height: 26px;
-                    padding-bottom: 31px;
-                    border-bottom: 1px solid #5e607a;
-                }
-            }
-            .docs-middle {
-                padding-top: 31px;
-                padding-bottom: 31px;
-            }
-
-            .docs-bottom {
-                border-bottom: none;
             }
         }
     }
 }
 
-@media screen and (max-width: 375px) {
+/* Mobile-specific styles */
+@media screen and (max-width: 375px) and (max-height: 700px) {
     body {
-      font-size: 14px;
+        margin: 28px 16px 0px 16px;
+        width: $contentMobileWidth;
+        height: 100%;
+        font-family: "customFont", Arial, sans-serif;
+        overflow: scroll;
+
+        .navbar {
+            width: inherit;
+            display: flex;
+            .hamburger {
+                
+                justify-content: right;
+                display: block;
+            }
+
+            .hamburger#toggle-nav:checked~.navbar .menu {
+                display: block;
+            }
+
+            .menu {
+                display: none;
+            }
+        }
+
+        .container {
+            .block-1 {
+                height: auto;
+
+                .image-background {
+                    width: $contentMobileWidth;
+                    height: 300px;
+                    margin-top: 32px;
+                    position: relative;
+                    background-image: url("../images/image-web-3-mobile.jpg");
+                    background-repeat: no-repeat;
+                    background-position: center center;
+                    background-size: cover;
+                    display: block;
+                }
+
+                .main-title {
+                    width: $contentMobileWidth;
+                    height: 312px;
+
+                    .title {
+                        width: $contentMobileWidth;
+                        height: 120px;
+                        position: relative;
+                        margin-top: 24px;
+
+                        span {
+                            height: inline;
+                            font-weight: 800;
+                            font-size: 40px;
+                            line-height: 40px;
+                            color: $darkSpaceBlueColor;
+                        }
+                    }
+
+                    .detail {
+                        width: $contentMobileWidth;
+                        height: 176px;
+                        margin-top: 16px;
+
+                        span {
+                            width: $contentMobileWidth;
+                            height: 104px;
+                            font-size: 15px;
+                            line-height: 26px;
+                            font-style: normal;
+                            font-weight: 400;
+                            color: $gunMentalColor;
+                        }
+
+                        .button-readmore {
+                            width: 185px;
+                            height: 48px;
+                            background-color: $lightVermillionColor;
+                            display: block;
+                            margin-top: 24px;
+
+                            span {
+                                width: 185px;
+                                height: 48px;
+                                font-weight: 700;
+                                font-size: 14px;
+                                line-height: 24px;
+                                letter-spacing: 4.375px;
+                                display: flex;
+                                justify-content: center;
+                                align-items: center;
+                                position: relative;
+                                color: $backgroundColorWhite;
+                            }
+                        }
+                    }
+                }
+            }
+
+            .block-2 {
+                width: $contentMobileWidth;
+                height: 489px;
+                position: relative;
+                background-color: $darkSpaceBlueColor;
+                margin-top: 64px;
+
+                p {
+                    padding-top: 24px;
+                    line-height: 40px;
+                    margin: 0px 0px 35px 21px;
+                    color: $yellowColor;
+                    font-size: 40px;
+                    font-style: normal;
+                    font-weight: 700;
+                }
+
+                .news-list {
+                    position: relative;
+                }
+
+                .docs {
+                    width: 302px;
+                    height: 84px;
+                    margin: 31px 21px 29px 26px;
+                    position: relative;
+
+                    .title {
+                        position: relative;
+                        color: #fff;
+                        font-style: normal;
+                        font-weight: 600;
+                        font-size: 20px;
+                        margin-bottom: 8px;
+                        line-height: 24px;
+
+                        :hover {
+                            cursor: pointer;
+                            color: $yellowColor;
+                        }
+                    }
+
+                    .detail {
+                        position: relative;
+                        width: 302px;
+                        height: 52px;
+                        font-style: normal;
+                        font-weight: 400;
+                        font-size: 15px;
+                        color: $silverColor;
+                        line-height: 26px;
+                        padding-bottom: 31px;
+                        border-bottom: 1px solid $gunMentalColor;
+                    }
+                }
+
+                .docs-middle {
+                    padding-top: 31px;
+                    padding-bottom: 31px;
+                }
+
+                .docs-bottom {
+                    .detail {
+                        border: none;
+                    }
+                }
+            }
+        }
+
+        .block-3 {
+            position: relative;
+            display: block;
+            width: 100%;
+            height: 129px;
+            margin-top: 71px;
+
+            .block-content {
+                display: flex;
+                margin: 32px 0px;
+            }
+
+            .banner {
+                width: 100px;
+                height: 127px;
+
+                img {
+                    height: 100%;
+                    overflow: hidden;
+                    padding-right: 24px;
+                    background-repeat: no-repeat;
+                    background-position: center center;
+                    background-size: cover;
+                    position: relative;
+                    display: flex;
+
+                }
+            }
+
+            .content-detail {
+                width: 219px;
+                font-style: normal;
+                margin-left: 24px;
+
+                .content-number {
+                    display: inherit;
+                    position: relative;
+                    font-weight: 700;
+                    font-size: 32px;
+                    line-height: 32px;
+                    color: $silverColor;
+                    margin-bottom: 12px;
+                }
+
+                .content-title {
+                    display: inherit;
+                    position: relative;
+                    font-weight: 700;
+                    font-size: 18px;
+                    line-height: 24px;
+                    color: $darkSpaceBlueColor;
+                    margin-bottom: 9px;
+                }
+
+                .content-title:hover {
+                    cursor: pointer;
+                    color: $lightVermillionColor;
+                }
+
+                .content-description {
+                    display: inherit;
+                    position: relative;
+                    font-weight: 400;
+                    font-size: 15px;
+                    line-height: 26px;
+                    color: $gunMentalColor;
+                }
+            }
+        }
     }
-    
-    /* Mobile-specific styles */
-  }
-  
+}
