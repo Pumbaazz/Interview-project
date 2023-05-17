@@ -3,11 +3,11 @@ import burger from "../assets/images/icon-menu.svg";
 import closeNav from "../assets/images/icon-menu-close.svg";
 import { React, useState } from "react";
 
-export const Navbar = () => {
+export const Header = () => {
     const [isExpanded, setIsExpanded] = useState(false);
 
     return (
-        <body className="mx-4 my-8 flex justify-between lg:mb-12 relative">
+        <header className="mx-4 my-8 flex justify-between lg:mb-12 relative">
             <img src={Logo} alt="Logo" />
             <button className="md:hidden z-50 pr-2" 
                 onClick={() => {
@@ -35,6 +35,6 @@ export const Navbar = () => {
                     </li>
                 </ul>
             </nav>
-        </body>
+        </header>
     );
 };
