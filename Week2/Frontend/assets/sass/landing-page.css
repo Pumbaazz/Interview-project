@@ -2,13 +2,11 @@
   font-family: customFont;
   src: url(../fonts/Inter-VariableFont_slntwght.ttf) format(ttf);
 }
-@media screen and (min-width: 1440px) and (min-height: 1024px) {
+@media screen and (min-width: 376px) {
   body {
     width: 100%;
     height: 100%;
     background-color: #fffdfa;
-    max-width: 1440px;
-    max-height: 1024px;
     font-family: "customFont", Arial, sans-serif;
     margin: 50px 165px 50px;
   }
@@ -20,15 +18,6 @@
   }
   body .navbar .hamburger {
     display: none;
-    cursor: pointer;
-  }
-  body .navbar .hamburger span {
-    display: block;
-    width: 25px;
-    height: 3px;
-    background-color: #333;
-    margin-bottom: 5px;
-    /* Set styles for the hamburger button lines */
   }
   body .navbar .menu {
     display: flex;
@@ -54,83 +43,35 @@
   body .container {
     max-width: 1110px;
     max-height: 511px;
-    display: flex;
+    display: grid;
     margin-top: 55px;
     margin-bottom: 71px;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: repeat(3, 1fr);
+    grid-column-gap: 0px;
+    grid-row-gap: 0px;
     overflow: hidden;
     position: relative;
   }
-  body .container .block-1 .image-background {
+  body .container .image-background {
+    grid-area: 1/1/3/3;
     width: 730px;
     height: 300px;
     overflow: hidden;
-    position: relative;
+    display: grid;
     background-image: url("../images/image-web-3-desktop.jpg");
     background-repeat: no-repeat;
     background-position: center center;
     background-size: cover;
     position: relative;
-    display: flex;
   }
-  body .container .block-1 .main-title {
-    width: 730px;
-    height: 183px;
-    position: relative;
-    display: flex;
-  }
-  body .container .block-1 .main-title .title {
-    width: 350px;
-    height: 182px;
-    position: relative;
-    font-weight: bold;
-    font-size: 56px;
-    text-align: left;
-    text-shadow: 1px 0 #000000;
-  }
-  body .container .block-1 .main-title .detail {
-    width: 350px;
-    height: 181px;
-    position: relative;
-    margin-left: 30px;
-  }
-  body .container .block-1 .main-title .detail span {
-    position: relative;
-    font-size: 15px;
-    line-height: 26px;
-    font-style: normal;
-    font-weight: 400;
-    color: #5e607a;
-  }
-  body .container .block-1 .main-title .detail .button-readmore {
-    width: 185px;
-    height: 48px;
-    background-color: #f15d51;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    margin-top: 29px;
-  }
-  body .container .block-1 .main-title .detail .button-readmore span {
-    font-weight: 700;
-    font-size: 14px;
-    line-height: 24px;
-    letter-spacing: 4.375px;
-    text-align: center;
-    position: relative;
-    color: #fffdfa;
-  }
-  body .container .block-1 .main-title .detail .button-readmore:hover {
+  body .container .news-list {
+    grid-area: 1/3/4/4;
+    border: 1px solid green;
+    margin-left: 1rem;
     background-color: #00001a;
-    cursor: pointer;
   }
-  body .container .block-2 {
-    margin-left: 30px;
-    position: relative;
-    background-color: #00001a;
-    width: 350px;
-    height: 511px;
-  }
-  body .container .block-2 p {
+  body .container .news-list p {
     padding-top: 32px;
     line-height: 40px;
     margin: 0px 0px 34px 24px;
@@ -139,16 +80,13 @@
     font-style: normal;
     font-weight: 700;
   }
-  body .container .block-2 .news-list {
-    position: relative;
-  }
-  body .container .block-2 .docs {
+  body .container .news-list .docs {
     width: 302px;
     height: 84px;
     margin: 31px 26px 31px 26px;
     position: relative;
   }
-  body .container .block-2 .docs .title {
+  body .container .news-list .docs .news-title {
     position: relative;
     color: #fff;
     font-style: normal;
@@ -157,11 +95,11 @@
     margin-bottom: 8px;
     line-height: 24px;
   }
-  body .container .block-2 .docs .title :hover {
+  body .container .news-list .docs .news-title :hover {
     cursor: pointer;
     color: #e9aa52;
   }
-  body .container .block-2 .docs .detail {
+  body .container .news-list .docs .news-detail {
     position: relative;
     width: 302px;
     height: 52px;
@@ -173,12 +111,54 @@
     padding-bottom: 31px;
     border-bottom: 1px solid #5e607a;
   }
-  body .container .block-2 .docs-middle {
+  body .container .news-list .docs-middle {
     padding-top: 31px;
     padding-bottom: 31px;
   }
-  body .container .block-2 .docs-bottom {
+  body .container .news-list .docs-bottom {
     border-bottom: none;
+  }
+  body .container .title {
+    grid-area: 3/1/4/2;
+    width: 350px;
+    height: 182px;
+    position: relative;
+    font-weight: bold;
+    font-size: 56px;
+    text-align: left;
+    text-shadow: 1px 0 #000000;
+  }
+  body .container .detail {
+    grid-area: 3/2/4/3;
+    width: 350px;
+    height: 181px;
+    position: relative;
+    margin-left: 30px;
+    font-size: 15px;
+    line-height: 26px;
+    font-style: normal;
+    font-weight: 400;
+    color: #5e607a;
+  }
+  body .container .detail .button-readmore {
+    width: 185px;
+    height: 48px;
+    background-color: #f15d51;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 29px;
+    font-weight: 700;
+    font-size: 14px;
+    line-height: 24px;
+    letter-spacing: 4.375px;
+    text-align: center;
+    position: relative;
+    color: #fffdfa;
+  }
+  body .container .detail .button-readmore:hover {
+    background-color: #00001a;
+    cursor: pointer;
   }
   body .block-3 {
     max-width: 1110px;
@@ -235,7 +215,7 @@
   }
 }
 /* Mobile-specific styles */
-@media screen and (max-width: 375px) and (max-height: 700px) {
+@media screen and (max-width: 375px) {
   body {
     margin: 28px 16px 0px 16px;
     width: 343px;
@@ -244,23 +224,57 @@
     overflow: scroll;
   }
   body .navbar {
-    width: inherit;
+    width: 343px;
     display: flex;
   }
   body .navbar .hamburger {
-    justify-content: right;
-    display: block;
+    width: inherit;
+    display: flex;
+    position: absolute;
   }
-  body .navbar .hamburger#toggle-nav:checked ~ .navbar .menu {
+  body .navbar .hamburger img {
+    display: inherit;
+    float: right;
+    margin-left: auto;
+  }
+  body .navbar .hamburger .sidenav {
+    height: 100%;
+    width: 0;
+    position: fixed;
+    z-index: 1;
+    top: 0;
+    right: 0;
+    background-color: #fffdfa;
+    overflow-x: hidden;
+    transition: 0.5s;
+    padding-top: 144px;
+  }
+  body .navbar .hamburger .sidenav a {
+    padding: 24px 20px 8px 32px;
+    text-decoration: none;
+    font-size: 25px;
+    color: #00001a;
     display: block;
+    transition: 0.3s;
+  }
+  body .navbar .hamburger .sidenav a:hover {
+    color: #f15d51;
+  }
+  body .navbar .hamburger .sidenav .closebtn {
+    position: absolute;
+    top: 28px;
+    right: 20px;
+    font-size: 36px;
+    margin-left: 50px;
   }
   body .navbar .menu {
     display: none;
   }
-  body .container .block-1 {
-    height: auto;
+  body .container {
+    display: block;
+    width: 343px;
   }
-  body .container .block-1 .image-background {
+  body .container .image-background {
     width: 343px;
     height: 300px;
     margin-top: 32px;
@@ -271,29 +285,21 @@
     background-size: cover;
     display: block;
   }
-  body .container .block-1 .main-title {
-    width: 343px;
-    height: 312px;
-  }
-  body .container .block-1 .main-title .title {
+  body .container .title {
     width: 343px;
     height: 120px;
     position: relative;
     margin-top: 24px;
-  }
-  body .container .block-1 .main-title .title span {
+    display: block;
     height: inline;
     font-weight: 800;
     font-size: 40px;
     line-height: 40px;
     color: #00001a;
   }
-  body .container .block-1 .main-title .detail {
+  body .container .detail {
     width: 343px;
-    height: 176px;
     margin-top: 16px;
-  }
-  body .container .block-1 .main-title .detail span {
     width: 343px;
     height: 104px;
     font-size: 15px;
@@ -302,16 +308,11 @@
     font-weight: 400;
     color: #5e607a;
   }
-  body .container .block-1 .main-title .detail .button-readmore {
+  body .container .detail .button-readmore {
     width: 185px;
     height: 48px;
     background-color: #f15d51;
-    display: block;
     margin-top: 24px;
-  }
-  body .container .block-1 .main-title .detail .button-readmore span {
-    width: 185px;
-    height: 48px;
     font-weight: 700;
     font-size: 14px;
     line-height: 24px;
@@ -319,17 +320,21 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    position: relative;
     color: #fffdfa;
   }
-  body .container .block-2 {
+  body .container .detail .button-readmore:hover {
+    background-color: #00001a;
+    cursor: pointer;
+  }
+  body .container .news-list {
     width: 343px;
     height: 489px;
     position: relative;
+    display: block;
     background-color: #00001a;
-    margin-top: 64px;
+    margin-top: 140px;
   }
-  body .container .block-2 p {
+  body .container .news-list p {
     padding-top: 24px;
     line-height: 40px;
     margin: 0px 0px 35px 21px;
@@ -338,16 +343,13 @@
     font-style: normal;
     font-weight: 700;
   }
-  body .container .block-2 .news-list {
-    position: relative;
-  }
-  body .container .block-2 .docs {
+  body .container .news-list .docs {
     width: 302px;
     height: 84px;
     margin: 31px 21px 29px 26px;
     position: relative;
   }
-  body .container .block-2 .docs .title {
+  body .container .news-list .docs .news-title {
     position: relative;
     color: #fff;
     font-style: normal;
@@ -356,11 +358,11 @@
     margin-bottom: 8px;
     line-height: 24px;
   }
-  body .container .block-2 .docs .title :hover {
+  body .container .news-list .docs .news-title :hover {
     cursor: pointer;
     color: #e9aa52;
   }
-  body .container .block-2 .docs .detail {
+  body .container .news-list .docs .news-detail {
     position: relative;
     width: 302px;
     height: 52px;
@@ -372,11 +374,11 @@
     padding-bottom: 31px;
     border-bottom: 1px solid #5e607a;
   }
-  body .container .block-2 .docs-middle {
+  body .container .news-list .docs-middle {
     padding-top: 31px;
     padding-bottom: 31px;
   }
-  body .container .block-2 .docs-bottom .detail {
+  body .container .news-list .docs-bottom .news-detail {
     border: none;
   }
   body .block-3 {
