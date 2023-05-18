@@ -5,10 +5,10 @@ module.exports = {
   ],
   theme: {
     screens: {
-      sm: '480px',
-      md: '768px',
-      lg: '976px',
-      xl: '1440px',
+      sm: '200px',
+      md: '800px',
+      lg: '900px',
+      xl: '1280px',
     },
     colors: {
       'backgroundColorWhite': '#fffdfa',
@@ -21,18 +21,6 @@ module.exports = {
     fontFamily: {
       sans: ['Inter', 'system-ui'],
     },
-    fontSize: {
-      base: '15px',
-    },
-    extend: {
-      spacing: {
-        '128': '32rem',
-        '144': '36rem',
-      },
-      borderRadius: {
-        '4xl': '2rem',
-      }
-    }
   },
   plugins: [],
 }

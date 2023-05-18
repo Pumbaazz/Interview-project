@@ -8,6 +8,22 @@
 @tailwind components;
 @tailwind utilities;
 
+@layer base {
+    body {
+        @apply bg-backgroundColorWhite;
+    }
+}
+
+@layer components {
+    .dropdown {
+        @apply md:drop-shadow-none absolute top-[-2rem] -right-4 h-[275lvh] w-[72%] bg-backgroundColorWhite drop-shadow-2xl border-silverColor;
+    }
+
+    .no-dropdown {
+        @apply relative left-0 top-0 h-auto w-auto;
+    }
+}
+
 @layer utilities {
     .desktop-article-cover {
         content: url('./assets/images/image-web-3-desktop.jpg');
