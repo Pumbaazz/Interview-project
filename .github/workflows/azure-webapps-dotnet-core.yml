@@ -62,4 +62,4 @@ jobs:
         with:
           app-name: 'movievoting'
           slot-name: 'production'
-          publish-profile: ${{ secrets.AzureAppService_PublishProfile_6c18ad561f534b3b8f08e488a5a8cb01 }}
+          publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_F09E86B159E74004A0BF77585E56ABE5 }}
