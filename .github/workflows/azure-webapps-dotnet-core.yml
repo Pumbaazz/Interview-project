@@ -63,3 +63,4 @@ jobs:
           app-name: 'movievoting'
           slot-name: 'production'
           publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_F09E86B159E74004A0BF77585E56ABE5 }}
+          package: .
