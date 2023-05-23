@@ -7,6 +7,7 @@ on:
   push:
     branches:
       - master
+      - Pumbaazz-patch-1
   workflow_dispatch:
 
 jobs:
@@ -23,13 +24,13 @@ jobs:
           include-prerelease: true
       
       - name: Restore NuGet packages
-        run: dotnet restore WebAPI.sln
+        run: dotnet restore BE\WebAPI\WebAPI.sln
 
       - name: Build with dotnet
-        run: dotnet build WebAPI.sln --configuration Release
+        run: dotnet build BE\WebAPI\WebAPI.sln --configuration Release
 
       - name: dotnet publish
-        run: dotnet publish WebAPI.sln -c Release -o ${{env.DOTNET_ROOT}}/myapp
+        run: dotnet publish BE\WebAPI\WebAPI.sln -c Release -o ${{env.DOTNET_ROOT}}/myapp
 
       - name: Upload artifact for deployment job
         uses: actions/upload-artifact@v2
@@ -50,11 +51,16 @@ jobs:
         with:
           name: .net-app
 
+      - name: Azure Login
+        uses: azure/login@v1
+        with:
+          creds: ${{ secrets.AZURE_CREDENTIALS }}
+
       - name: Deploy to Azure Web App
         id: deploy-to-webapp
         uses: azure/webapps-deploy@v2
         with:
           app-name: 'movievoting'
           slot-name: 'production'
-          publish-profile: ${{ secrets.AzureAppService_PublishProfile_6c18ad561f534b3b8f08e488a5a8cb01 }}
+          publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_F09E86B159E74004A0BF77585E56ABE5 }}
           package: .
