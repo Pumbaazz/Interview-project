@@ -21,11 +21,11 @@ jobs:
           node-version: '18.x'
 
       - name: npm install, build, and test
-        run:
-		      cd FE/project_interview
+        run: |
           npm install
           npm run build --if-present
           npm run test --if-present
+        working-directory: FE/project_interview
 
       - name: Upload artifact for deployment job
         uses: actions/upload-artifact@v2
