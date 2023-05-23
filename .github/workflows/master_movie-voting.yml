@@ -42,7 +42,7 @@ jobs:
         run: dotnet build BE/WebAPI/WebAPI.sln --configuration Release
 
       - name: dotnet publish
-        run: dotnet publish BE/WebAPI/WebAPI.sln -c Release -o ./publish
+        run: dotnet publish BE/WebAPI/WebAPI.sln -c Release -o ${{env.DOTNET_ROOT}}/myapp
 
       # Update migration database (config postgres)
       # - name: Update Database
@@ -51,8 +51,8 @@ jobs:
       - name: Upload artifact for deployment job
         uses: actions/upload-artifact@v2
         with:
-          name: publish
-          path: ./publish
+          name: .net-app
+          path: ${{env.DOTNET_ROOT}}/myapp
 
   deploy:
     runs-on: ubuntu-latest
@@ -65,7 +65,7 @@ jobs:
       - name: Download artifact from build job
         uses: actions/download-artifact@v2
         with:
-          name: publish
+          name: .net-app
 
       - name: Deploy to Azure Web App
         id: deploy-to-webapp
@@ -74,4 +74,4 @@ jobs:
           app-name: 'movie-voting'
           slot-name: 'Production'
           publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_BB06D001EA5C4A45AE3A8DCB940667E5 }}
-          package: ./publish
+          package: .
