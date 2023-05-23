@@ -18,12 +18,23 @@ jobs:
     steps:
       - uses: actions/checkout@v2
 
+      - name: Setup Node.js environment
+        uses: actions/setup-node@v2
+        with:
+          node-version: 18
+
+      - name: Build React.js app
+        run: |
+          cd FE/project_interview
+          npm install
+          npm run build
+
       - name: Set up .NET Core
         uses: actions/setup-dotnet@v1
         with:
           dotnet-version: '7.x'
           include-prerelease: true
-          
+
       - name: Restore NuGet packages
         run: dotnet restore BE/WebAPI/WebAPI.sln
 
@@ -32,6 +43,10 @@ jobs:
 
       - name: dotnet publish
         run: dotnet publish BE/WebAPI/WebAPI.sln -c Release -o ${{env.DOTNET_ROOT}}/myapp
+
+      # Update migration database (config postgres)
+      # - name: Update Database
+      #   run: dotnet ef database update --project ./BE/WebAPI/WebAPI.csproj --startup-project ./BE/WebAPI/WebAPI.csproj --context WebAPI.Persistence.ApplicationDbContext
 
       - name: Upload artifact for deployment job
         uses: actions/upload-artifact@v2
