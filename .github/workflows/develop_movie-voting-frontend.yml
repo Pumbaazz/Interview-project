@@ -21,7 +21,7 @@ jobs:
           node-version: '18.x'
 
       - name: npm install, build, and test
-        run: |
+        run:
 		      cd FE/project_interview
           npm install
           npm run build --if-present
