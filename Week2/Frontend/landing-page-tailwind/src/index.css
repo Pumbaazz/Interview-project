@@ -1,0 +1,41 @@
+@font-face {
+    font-family: "Inter";
+    src: local("Inter"),
+        url("./assets/fonts/Inter-VariableFont_slnt\,wght.ttf") format("truetype");
+}
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+    body {
+        @apply bg-backgroundColorWhite;
+    }
+}
+
+@layer components {
+    .dropdown {
+        @apply md:drop-shadow-none absolute top-[-2rem] -right-4 h-[275lvh] w-[72%] bg-backgroundColorWhite drop-shadow-2xl border-silverColor;
+    }
+
+    .no-dropdown {
+        @apply relative left-0 top-0 h-auto w-auto;
+    }
+}
+
+@layer utilities {
+    .desktop-article-cover {
+        content: url('./assets/images/image-web-3-desktop.jpg');
+    }
+
+    .dim-bg::before {
+        content: '';
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        z-index: -1;
+    }
+}

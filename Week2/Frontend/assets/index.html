@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <!-- displays site properly based on user's device -->
+
+    <link rel="icon" type="image/png" sizes="32x32" href="./images/favicon-32x32.png" />
+    <link rel="stylesheet" href="./sass/landing-page.css" />
+    <title>News Homepage</title>
+</head>
+
+<body>
+    <div class="navbar">
+        <img src="./images/logo.svg" alt="logo" />
+        <ul class="menu">
+            <li>Home</li>
+            <li>New</li>
+            <li>Popular</li>
+            <li>Trending</li>
+            <li>Categories</li>
+        </ul>
+        <div class="hamburger">
+            <img src="./images/icon-menu.svg" alt="hamburger icon" onclick="openNav()">
+            <div id="mySidenav" class="sidenav">
+                <!-- <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a> -->
+                <img src="./images/icon-menu-close.svg" alt="hamburger close btn" class="closebtn" onclick="closeNav()">
+                <a href="#">Home</a>
+                <a href="#">New</a>
+                <a href="#">Popular</a>
+                <a href="#">Trending</a>
+                <a href="#">Categories</a>
+            </div>
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="image-background"></div>
+        <div class="title">The Bright Future of Web 3.0?</div>
+        <div class="detail">
+            We dive into the next evolution of the web that
+            claims to put the power of the platforms back into
+            the hands of the people. But is it really fulfilling
+            its promise?
+            <div class="button-readmore">READ MORE</div>
+        </div>
+        <div class="news-list">
+            <p>News</p>
+            <div class="docs">
+                <div class="news-title">
+                    <span>New Hydrogen VS Electric Cars</span>
+                </div>
+                <div class="news-detail">
+                    <span>Will hydrogen-fueled cars ever catch up to
+                        EVs?</span>
+                </div>
+            </div>
+            <div class="docs docs-middle">
+                <div class="news-title">
+                    <span>Downsides of AI Artistry</span>
+                </div>
+                <div class="news-detail">
+                    <span>What are the possible adverse effects of
+                        on-demand AI image generation?</span>
+                </div>
+            </div>
+            <div class="docs docs-bottom">
+                <div class="news-title">
+                    <span>Is VC Funding Drying Up?</span>
+                </div>
+                <div class="news-detail">
+                    <span>Private funding by VC firms is down 50% YOY. We
+                        take a look at what that means.</span>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="block-3">
+        <div class="block-content">
+            <div class="banner">
+                <img src="./images/image-retro-pcs.jpg" alt="logo" />
+            </div>
+            <div class="content-detail">
+                <div class="content-number">
+                    <span>01</span>
+                </div>
+                <div class="content-title">
+                    <span>Reviving Retro PCs</span>
+                </div>
+                <div class="content-description">
+                    <span>What happens when old PCs are given modern
+                        upgrades?</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="block-content">
+            <div class="banner">
+                <img src="./images/image-top-laptops.jpg" alt="logo" />
+            </div>
+            <div class="content-detail">
+                <div class="content-number">
+                    <span>02</span>
+                </div>
+                <div class="content-title">
+                    <span>Top 10 Laptops of 2022</span>
+                </div>
+                <div class="content-description">
+                    <span>Our best picks for various needs and budgets.</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="block-content">
+            <div class="banner">
+                <img src="./images/image-gaming-growth.jpg" alt="logo" />
+            </div>
+            <div class="content-detail">
+                <div class="content-number">
+                    <span>03</span>
+                </div>
+                <div class="content-title">
+                    <span>The Growth of Gaming</span>
+                </div>
+                <div class="content-description">
+                    <span>How the pandemic has sparked fresh
+                        opportunities.</span>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Script file -->
+    <script src="./js/landing-page.js"></script>
+</body>
+
+</html>

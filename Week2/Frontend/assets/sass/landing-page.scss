@@ -1,0 +1,526 @@
+// define variable
+$maxWidthDesktop: 1440px;
+$maxHeightDesktop: 1024px;
+$contentWidth: 1110px;
+$maxWidthMobile: 375px;
+$maxHeightMobile: 700px;
+$contentMobileWidth: 343px;
+$backgroundColorWhite: #fffdfa;
+$gunMentalColor: #5e607a;
+$darkSpaceBlueColor: #00001a;
+$lightVermillionColor: #f15d51;
+$yellowColor: #e9aa52;
+$silverColor: #c5c6ce;
+
+@font-face {
+    font-family: customFont;
+    src: url(../fonts/Inter-VariableFont_slntwght.ttf) format(ttf);
+}
+
+@media screen and (min-width: 376px) {
+    body {
+        width: 100%;
+        height: 100%;
+        background-color: $backgroundColorWhite;
+        font-family: "customFont", Arial, sans-serif;
+        margin: 50px 165px 50px;
+
+        .navbar {
+            display: inline-block;
+            margin: 0 auto;
+            width: $contentWidth;
+            text-align: center;
+
+            .hamburger {
+                display: none;
+            }
+
+            .menu {
+                display: flex;
+                position: relative;
+                list-style: none;
+                justify-content: flex-end;
+                float: right;
+                margin: auto;
+
+                li {
+                    margin-left: 40px;
+                    color: $gunMentalColor;
+                }
+
+                :hover {
+                    cursor: pointer;
+                    color: $lightVermillionColor;
+                }
+            }
+
+            img {
+                float: left;
+                width: 60px;
+                height: 40px;
+            }
+        }
+
+        .container {
+            max-width: $contentWidth;
+            max-height: 511px;
+            display: grid;
+            margin-top: 55px;
+            margin-bottom: 71px;
+            grid-template-columns: repeat(3, 1fr);
+            grid-template-rows: repeat(3, 1fr);
+            grid-column-gap: 0px;
+            grid-row-gap: 0px;
+
+            overflow: hidden;
+            position: relative;
+
+            .image-background {
+                grid-area: 1 / 1 / 3 / 3;
+                width: 730px;
+                height: 300px;
+                overflow: hidden;
+                display: grid;
+                background-image: url("../images/image-web-3-desktop.jpg");
+                background-repeat: no-repeat;
+                background-position: center center;
+                background-size: cover;
+                position: relative;
+            }
+
+            .news-list {
+                grid-area: 1 / 3 / 4 / 4;
+                border: 1px solid green;
+                margin-left: 1rem;
+                background-color: $darkSpaceBlueColor;
+
+                p {
+                    padding-top: 32px;
+                    line-height: 40px;
+                    margin: 0px 0px 34px 24px;
+                    color: $yellowColor;
+                    font-size: 40px;
+                    font-style: normal;
+                    font-weight: 700;
+                }
+
+                .docs {
+                    width: 302px;
+                    height: 84px;
+                    margin: 31px 26px 31px 26px;
+                    position: relative;
+
+                    .news-title {
+                        position: relative;
+                        color: #fff;
+                        font-style: normal;
+                        font-weight: 600;
+                        font-size: 20px;
+                        margin-bottom: 8px;
+                        line-height: 24px;
+
+                        :hover {
+                            cursor: pointer;
+                            color: $yellowColor;
+                        }
+                    }
+
+                    .news-detail {
+                        position: relative;
+                        width: 302px;
+                        height: 52px;
+                        font-style: normal;
+                        font-weight: 400;
+                        font-size: 15px;
+                        color: $silverColor;
+                        line-height: 26px;
+                        padding-bottom: 31px;
+                        border-bottom: 1px solid $gunMentalColor;
+                    }
+                }
+
+                .docs-middle {
+                    padding-top: 31px;
+                    padding-bottom: 31px;
+                }
+
+                .docs-bottom {
+                    border-bottom: none;
+                }
+            }
+
+            .title {
+                grid-area: 3 / 1 / 4 / 2;
+                width: 350px;
+                height: 182px;
+                position: relative;
+                font-weight: bold;
+                font-size: 56px;
+                text-align: left;
+                text-shadow: 1px 0 #000000;
+            }
+
+            .detail {
+                grid-area: 3 / 2 / 4 / 3;
+                width: 350px;
+                height: 181px;
+                position: relative;
+                margin-left: 30px;
+                font-size: 15px;
+                line-height: 26px;
+                font-style: normal;
+                font-weight: 400;
+                color: $gunMentalColor;
+
+                .button-readmore {
+                    width: 185px;
+                    height: 48px;
+                    background-color: $lightVermillionColor;
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    margin-top: 29px;
+                    font-weight: 700;
+                    font-size: 14px;
+                    line-height: 24px;
+                    letter-spacing: 4.375px;
+                    text-align: center;
+                    position: relative;
+                    color: $backgroundColorWhite;
+
+                }
+
+                .button-readmore:hover {
+                    background-color: $darkSpaceBlueColor;
+                    cursor: pointer;
+                }
+            }
+        }
+
+        .block-3 {
+            max-width: $contentWidth;
+            width: 100%;
+            height: 129px;
+            position: relative;
+            display: flex;
+            margin-top: 71px;
+
+            .block-content {
+                width: 350px;
+                height: 129px;
+                position: relative;
+                display: inherit;
+                margin-right: 30px;
+
+                // padding-right: 30px;
+                .banner {
+                    display: inherit;
+                    padding-right: 24px;
+                }
+
+                .content-detail {
+                    width: 226px;
+                    font-style: normal;
+
+                    .content-number {
+                        display: inherit;
+                        position: relative;
+                        font-weight: 700;
+                        font-size: 32px;
+                        line-height: 32px;
+                        color: $silverColor;
+                        margin-bottom: 12px;
+                    }
+
+                    .content-title {
+                        display: inherit;
+                        position: relative;
+                        font-weight: 700;
+                        font-size: 18px;
+                        line-height: 24px;
+                        color: $darkSpaceBlueColor;
+                        margin-bottom: 9px;
+                    }
+
+                    .content-title:hover {
+                        cursor: pointer;
+                        color: $lightVermillionColor;
+                    }
+
+                    .content-description {
+                        display: inherit;
+                        position: relative;
+                        font-weight: 400;
+                        font-size: 15px;
+                        line-height: 26px;
+                        color: $gunMentalColor;
+                    }
+                }
+            }
+        }
+    }
+}
+
+/* Mobile-specific styles */
+@media screen and (max-width: 375px) {
+    body {
+        margin: 28px 16px 0px 16px;
+        width: $contentMobileWidth;
+        height: 100%;
+        font-family: "customFont", Arial, sans-serif;
+        overflow: scroll;
+
+        .navbar {
+            width: $contentMobileWidth;
+            display: flex;
+
+            .hamburger {
+                width: inherit;
+                display: flex;
+                position: absolute;
+
+                img {
+                    display: inherit;
+                    float: right;
+                    margin-left: auto;
+                }
+
+                .sidenav {
+                    height: 100%;
+                    width: 0;
+                    position: fixed;
+                    z-index: 1;
+                    top: 0;
+                    right: 0;
+                    background-color: $backgroundColorWhite;
+                    overflow-x: hidden;
+                    transition: 0.5s;
+                    padding-top: 144px;
+
+                    a {
+                        padding: 24px 20px 8px 32px;
+                        text-decoration: none;
+                        font-size: 25px;
+                        color: $darkSpaceBlueColor;
+                        display: block;
+                        transition: 0.3s;
+                    }
+
+                    a:hover {
+                        color: $lightVermillionColor;
+                    }
+
+                    .closebtn {
+                        position: absolute;
+                        top: 28px;
+                        right: 20px;
+                        font-size: 36px;
+                        margin-left: 50px;
+                    }
+                }
+            }
+
+            .menu {
+                display: none;
+            }
+        }
+
+        .container {
+            display: block;
+            width: $contentMobileWidth;
+
+            .image-background {
+                width: $contentMobileWidth;
+                height: 300px;
+                margin-top: 32px;
+                position: relative;
+                background-image: url("../images/image-web-3-mobile.jpg");
+                background-repeat: no-repeat;
+                background-position: center center;
+                background-size: cover;
+                display: block;
+            }
+
+            .title {
+                width: $contentMobileWidth;
+                height: 120px;
+                position: relative;
+                margin-top: 24px;
+                display: block;
+                height: inline;
+                font-weight: 800;
+                font-size: 40px;
+                line-height: 40px;
+                color: $darkSpaceBlueColor;
+            }
+
+            .detail {
+                width: $contentMobileWidth;
+                margin-top: 16px;
+                width: $contentMobileWidth;
+                height: 104px;
+                font-size: 15px;
+                line-height: 26px;
+                font-style: normal;
+                font-weight: 400;
+                color: $gunMentalColor;
+
+                .button-readmore {
+                    width: 185px;
+                    height: 48px;
+                    background-color: $lightVermillionColor;
+                    margin-top: 24px;
+                    font-weight: 700;
+                    font-size: 14px;
+                    line-height: 24px;
+                    letter-spacing: 4.375px;
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                    color: $backgroundColorWhite;
+                }
+
+                .button-readmore:hover {
+                    background-color: $darkSpaceBlueColor;
+                    cursor: pointer;
+                }
+            }
+
+            .news-list {
+                width: $contentMobileWidth;
+                height: 489px;
+                position: relative;
+                display: block;
+                background-color: $darkSpaceBlueColor;
+                margin-top: 140px;
+
+                p {
+                    padding-top: 24px;
+                    line-height: 40px;
+                    margin: 0px 0px 35px 21px;
+                    color: $yellowColor;
+                    font-size: 40px;
+                    font-style: normal;
+                    font-weight: 700;
+                }
+
+
+                .docs {
+                    width: 302px;
+                    height: 84px;
+                    margin: 31px 21px 29px 26px;
+                    position: relative;
+
+                    .news-title {
+                        position: relative;
+                        color: #fff;
+                        font-style: normal;
+                        font-weight: 600;
+                        font-size: 20px;
+                        margin-bottom: 8px;
+                        line-height: 24px;
+
+                        :hover {
+                            cursor: pointer;
+                            color: $yellowColor;
+                        }
+                    }
+
+                    .news-detail {
+                        position: relative;
+                        width: 302px;
+                        height: 52px;
+                        font-style: normal;
+                        font-weight: 400;
+                        font-size: 15px;
+                        color: $silverColor;
+                        line-height: 26px;
+                        padding-bottom: 31px;
+                        border-bottom: 1px solid $gunMentalColor;
+                    }
+                }
+
+                .docs-middle {
+                    padding-top: 31px;
+                    padding-bottom: 31px;
+                }
+
+                .docs-bottom {
+                    .news-detail {
+                        border: none;
+                    }
+                }
+            }
+        }
+
+        .block-3 {
+            position: relative;
+            display: block;
+            width: 100%;
+            height: 129px;
+            margin-top: 71px;
+
+            .block-content {
+                display: flex;
+                margin: 32px 0px;
+            }
+
+            .banner {
+                width: 100px;
+                height: 127px;
+
+                img {
+                    height: 100%;
+                    overflow: hidden;
+                    padding-right: 24px;
+                    background-repeat: no-repeat;
+                    background-position: center center;
+                    background-size: cover;
+                    position: relative;
+                    display: flex;
+
+                }
+            }
+
+            .content-detail {
+                width: 219px;
+                font-style: normal;
+                margin-left: 24px;
+
+                .content-number {
+                    display: inherit;
+                    position: relative;
+                    font-weight: 700;
+                    font-size: 32px;
+                    line-height: 32px;
+                    color: $silverColor;
+                    margin-bottom: 12px;
+                }
+
+                .content-title {
+                    display: inherit;
+                    position: relative;
+                    font-weight: 700;
+                    font-size: 18px;
+                    line-height: 24px;
+                    color: $darkSpaceBlueColor;
+                    margin-bottom: 9px;
+                }
+
+                .content-title:hover {
+                    cursor: pointer;
+                    color: $lightVermillionColor;
+                }
+
+                .content-description {
+                    display: inherit;
+                    position: relative;
+                    font-weight: 400;
+                    font-size: 15px;
+                    line-height: 26px;
+                    color: $gunMentalColor;
+                }
+            }
+        }
+    }
+}
