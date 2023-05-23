@@ -1,4 +1,4 @@
-FROM mcr.microsoft.com/dotnet/core/aspnet:7.0 as base
+# FROM mcr.microsoft.com/dotnet/core/aspnet:7.0-alpine as base
 FROM mcr.microsoft.com/dotnet/sdk:7.0 AS BUILD
 WORKDIR /app
 
@@ -8,7 +8,7 @@ COPY . ./
 RUN dotnet build --configuration Release --no-restore
 RUN dotnet publish -c Release -o out
 
-FROM mcr.microsoft.com/dotnet/core/aspnet:7.0
+FROM mcr.microsoft.com/dotnet/sdk:7.0
 WORKDIR /app
 COPY --from=build /app/out .
 ENV DB_HOST=localhost
