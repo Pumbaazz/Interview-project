@@ -351,3 +351,6 @@ MigrationBackup/
 
 # Visual studio code
 .vscode
+
+# Custom files
+launchSettings.json
