@@ -16,8 +16,4 @@ services:
       dockerfile: Dockerfile
     image: nguyntunphng/backend:latest
     ports:
-      - 7244:7244
-    environment:
-
-
-
+      - 5000:5000
