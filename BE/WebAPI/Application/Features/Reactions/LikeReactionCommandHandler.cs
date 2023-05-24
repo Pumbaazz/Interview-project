@@ -1,8 +1,8 @@
-﻿using MediatR;
-using WebAPI.Domain.Model;
-using WebAPI.Domain.DTO;
-using AutoMapper;
+﻿using AutoMapper;
+using MediatR;
 using WebAPI.Application.Mapper;
+using WebAPI.Domain.DTO;
+using WebAPI.Domain.Model;
 using WebAPI.Persistence;
 
 namespace WebAPI.Application.Features.Reactions
@@ -61,9 +61,9 @@ namespace WebAPI.Application.Features.Reactions
             }
 
             // Save change like number.
-            async void SaveChangeLike()
+            void SaveChangeLike()
             {
-                await _movieVoteDbContext.SaveChangesAsync(cancellationToken).ConfigureAwait(false);
+                _movieVoteDbContext.SaveChanges();
             }
         }
     }

@@ -1,7 +1,6 @@
 ﻿using MediatR;
 using Microsoft.AspNetCore.Mvc;
 using WebAPI.Domain.Model;
-using System.Threading;
 using WebAPI.Persistence;
 
 namespace WebAPI.Application.Features.SignUp
@@ -29,7 +28,7 @@ namespace WebAPI.Application.Features.SignUp
         /// <param name="cancellationToken">The cancellation token.</param>
         public async Task<IActionResult> Handle(SignUpCommand command, CancellationToken cancellationToken)
         {
-            var user = await GetUser(command.Email);
+            var user = GetUser(command.Email);
             if (user != null)
             {
                 return Conflict();
@@ -41,9 +40,9 @@ namespace WebAPI.Application.Features.SignUp
         }
 
         // Get user by email.
-        async Task<User> GetUser(string email)
+        User? GetUser(string email)
         {
-            return await Task.FromResult(_movieVoteDbContext.Users.FirstOrDefault(x => x.Email.Equals(email)));
+            return _movieVoteDbContext.Users.FirstOrDefault(x => x.Email.Equals(email));
         }
 
         // Handle save new user.

@@ -1,11 +1,11 @@
 // Ignore Spelling: cfg app
 
+using System.Reflection;
+using System.Text;
+using FluentValidation.AspNetCore;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
-using System.Text;
-using FluentValidation.AspNetCore;
-using System.Reflection;
 using WebAPI.Persistence;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -28,7 +28,8 @@ builder.Services.AddCors(options =>
 {
     options.AddDefaultPolicy(builder =>
     {
-        builder.WithOrigins("http://localhost:3000")
+        // builder.WithOrigins("http://localhost:3000")
+        builder.AllowAnyOrigin()
             .AllowAnyHeader()
             .AllowAnyMethod();
     });

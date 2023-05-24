@@ -1,13 +1,12 @@
-﻿using MediatR;
-using WebAPI.Domain.Model;
-using WebAPI.Domain.DTO;
-using AutoMapper;
+﻿using AutoMapper;
+using MediatR;
 using WebAPI.Application.Mapper;
+using WebAPI.Domain.DTO;
+using WebAPI.Domain.Model;
 using WebAPI.Persistence;
 
 namespace WebAPI.Application.Features.Reactions
 {
-    // Replace return ienumerable entity -> Dto, create new Dto
     public class DislikeReactionCommandHandler : IRequestHandler<DislikeReactionCommand, MoviesDto>
     {
         /// <summary>
@@ -65,9 +64,9 @@ namespace WebAPI.Application.Features.Reactions
             }
 
             // Save change like number.
-            async void SaveChangeDislike()
+            void SaveChangeDislike()
             {
-                await _movieVoteDbContext.SaveChangesAsync(cancellationToken).ConfigureAwait(false);
+                _movieVoteDbContext.SaveChanges();
             }
         }
     }

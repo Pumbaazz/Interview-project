@@ -5,6 +5,9 @@ namespace WebAPI.Application.Features.Reactions
 {
     public class LikeReactionCommand : IRequest<MoviesDto>
     {
+        /// <summary>
+        /// Gets or sets the movie id.
+        /// </summary>
         public int MovieId { get; set; }
     }
 }
