@@ -62,5 +62,5 @@ jobs:
       - name: Install dotnet ef
         run: dotnet tool install --global dotnet-ef
       - name: Run database migration
-        run: dotnet-ef database update # --connection ${{ secrets.DB_CONNECTION_STRING }}
+        run: dotnet-ef database update BE/WebAPI/Persistence/ApplicationDbContext # --connection ${{ secrets.DB_CONNECTION_STRING }}
 # Disable temporary
