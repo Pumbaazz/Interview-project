@@ -58,7 +58,10 @@ jobs:
           slot-name: 'production'
           publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_F09E86B159E74004A0BF77585E56ABE5 }}
           package: .
+
+      - name: Install dotnet ef
+        run: dotnet tool install --global dotnet-ef
       - name: Run database migration
-        run: dotnet-ef database update 0 --project BE\WebAPI\WebAPI.csproj --startup-project BE\WebAPI\WebAPI.csproj --context ApplicationDbContext
+        run: dotnet-ef database update # 0 --project BE\WebAPI\WebAPI.csproj --startup-project BE\WebAPI\WebAPI.csproj --context ApplicationDbContext
 
 # Disable temporary
