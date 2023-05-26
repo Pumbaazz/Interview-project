@@ -62,6 +62,6 @@ jobs:
       - name: Install dotnet ef
         run: dotnet tool install --global dotnet-ef
       - name: Run database migration
-        run: dotnet-ef database update # 0 --project BE\WebAPI\WebAPI.csproj --startup-project BE\WebAPI\WebAPI.csproj --context ApplicationDbContext
+        run: dotnet-ef database update 0 --project BE\WebAPI\WebAPI.csproj --startup-project BE\WebAPI\WebAPI.csproj --context ApplicationDbContext
 
 # Disable temporary
