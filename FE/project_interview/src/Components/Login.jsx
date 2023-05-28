@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import '../App.css'
 import 'bootstrap/dist/css/bootstrap.min.css';
+import { Button } from "react-bootstrap";
 
 export const Login = (props) => {
   const navigate = useNavigate();
@@ -27,9 +28,9 @@ export const Login = (props) => {
         body: json
       });
 
-      if (response.status === 200){
+      if (response.status === 200) {
         const data = await response.json();
-        localStorage.setItem('jwtToken', data.token);  
+        localStorage.setItem('jwtToken', data.token);
         navigate("/dashboard");
       }
       else {
@@ -72,9 +73,16 @@ export const Login = (props) => {
         />
         <button className="c-button" type="submit">Log In</button>
       </form>
-      <button className="link-btn" onClick={() => navigate("/sign-up")}>
-        Don't have an account? Register here.
-      </button>
+      <div>
+        <Button className="link-btn" onClick={() => navigate("/sign-up")}>
+          Don't have an account? Register here.
+        </Button>
+      </div>
+      <div>
+        <Button className="link-btn">
+          Login with Microsoft.
+        </Button>
+      </div>
     </div>
   );
 };

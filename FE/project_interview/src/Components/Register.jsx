@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { Button, label } from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
 
 export const Register = (props) => {
@@ -14,7 +15,7 @@ export const Register = (props) => {
 
   const navigate = useNavigate();
 
-  async function handleRegister(e){
+  async function handleRegister(e) {
     try {
       var json = JSON.stringify({ email: email, password: password, name: user_name })
       // Request create new user.
@@ -26,12 +27,12 @@ export const Register = (props) => {
         body: json
       });
 
-      if (response.status === 200){
+      if (response.status === 200) {
         setMessage("Create user successfully!.")
       }
       else {
         // Handle exception.
-        switch(response.status){
+        switch (response.status) {
           case 409:
             setMessage("User is existed. Please try again.");
             break;
@@ -41,9 +42,9 @@ export const Register = (props) => {
           default:
             setMessage("An error occurred. Please try again later.");
             break;
-        }        
+        }
       }
-      }
+    }
     catch (error) {
       console.log(error);
     }
@@ -81,9 +82,9 @@ export const Register = (props) => {
           id="password"
           name="password"
         />
-        <button className="c-button" type="submit">Register</button>
+        <button type="button" class="btn btn-outline-primary mt-1">Register</button>
       </form>
-      <button className="link-btn" onClick={() => navigate("/")}>
+      <button type="button" class="btn btn-outline-primary" onClick={() => navigate("/")}>
         Already have an account? Login here.
       </button>
     </div>
