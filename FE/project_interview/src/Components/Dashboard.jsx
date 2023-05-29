@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import jwtDecode from 'jwt-decode';
 import axios from 'axios';
-import '../App.css';
+import '../styles/App.css';
 import { useNavigate } from 'react-router-dom';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { Row, Col, Card, Navbar, Button, Nav } from 'react-bootstrap';

@@ -1,11 +1,10 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import '../App.css'
+import '../styles/App.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
-
+import { Button } from "react-bootstrap";
 // new import
-import { loginRequest } from "../authConfig";
-import msalInstance from "../AuthService";
+import { loginRequest } from "../config/authConfig";
 
 export const Login = (props) => {
   const navigate = useNavigate();
@@ -56,8 +55,8 @@ export const Login = (props) => {
       await msalInstance.loginPopup(loginRequest);
       console.log("ok");
     }
-    catch(error){
-      console.error(error);
+    catch (error) {
+      console.log(error);
     }
   }
 

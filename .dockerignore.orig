@@ -55,7 +55,12 @@ pimple.json
 !themes/BaseTheme/Resources/views/partials/*
 !themes/BaseTheme/Resources/views/base.html.twig
 !web/themes/*
-**/Week2/*
+<<<<<<< HEAD
+*/Clean-code-summary/*
+*/Week2/*
 **/Movie - public.png
+=======
+**/Week2/*
 **/Clean-code-summary/*
 **/.github/*
+>>>>>>> Deploy-docker
