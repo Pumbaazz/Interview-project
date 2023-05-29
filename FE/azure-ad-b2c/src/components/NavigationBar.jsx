@@ -1,14 +1,13 @@
-import { Navbar, Button } from "react-bootstrap";
+import { Navbar, Button, Nav } from "react-bootstrap";
 import {
     AuthenticatedTemplate,
     UnauthenticatedTemplate,
     useMsal,
 } from "@azure/msal-react";
 import { loginRequest } from "../authConfig";
-import { DashboardPage } from "./Dashboard";
 
 export const NavigationBar = () => {
-    const { instance, inProgress } = useMsal();
+    const { instance } = useMsal();
     let activeAccount;
 
     if (instance) {
@@ -38,28 +37,22 @@ export const NavigationBar = () => {
 
     return (
         <>
-            <Navbar bg="primary" variant="dark" className="navbarStyle">
+            <Navbar bg="dark" variant="dark" className="navbarStyle">
                 <a className="navbar-brand" href="/">
                     Brand name
                 </a>
                 <AuthenticatedTemplate>
                     <div className="collapse navbar-collapse justify-content-end">
-                        <p
-                            variant="warning"
-                            drop="start"
-                            title={
+                        <Nav.Item className="ml-3 navbar-text px-2">
+                            {
                                 activeAccount && activeAccount.name
                                     ? activeAccount.name
                                     : "Unknown"
                             }
-                        >
-                        </p>
-                        <Button
-                            as="button"
-                            onClick={handleLogoutRedirect}
-                        >
-                            Sign out
-                        </Button>
+                        </Nav.Item>
+                        <Nav.Item>
+                            <Button as="button" onClick={handleLogoutRedirect}> Sign out</Button>
+                        </Nav.Item>
                     </div>
                 </AuthenticatedTemplate>
                 <UnauthenticatedTemplate>

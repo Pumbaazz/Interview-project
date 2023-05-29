@@ -7,12 +7,12 @@ export const PageLayout = (props) => {
             <NavigationBar />
             <br />
             <h5>
-                <center>Title of website</center>
+                <center>Movie voting website</center>
             </h5>
             <br />
             {props.children}
             <br />
-            <AuthenticatedTemplate></AuthenticatedTemplate>
+            {/* <AuthenticatedTemplate></AuthenticatedTemplate> */}
         </>
     );
 };

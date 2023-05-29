@@ -17,12 +17,6 @@ export const b2cPolicies = {
         signUp: {
             authority: 'https://movievotingb2c.b2clogin.com/movievotingb2c.onmicrosoft.com/B2C_1_signUp',
         },
-        // forgotPassword: {
-        //     authority: 'https://movievotingb2c.b2clogin.com/movievotingb2c.onmicrosoft.com/B2C_1_reset_v3',
-        // },
-        // editProfile: {
-        //     authority: 'https://movievotingb2c.b2clogin.com/movievotingb2c.onmicrosoft.com/b2c_1_edit_profile_v2',
-        // },
     },
     authorityDomain: 'movievotingb2c.b2clogin.com',
 };
@@ -30,16 +24,16 @@ export const b2cPolicies = {
 
 export const msalConfig = {
     auth: {
-        clientId: 'f5b7e137-646f-46e4-b418-5d9065d07cd5', // This is the ONLY mandatory field that you need to supply.
-        authority: b2cPolicies.authorities.signUpSignIn.authority, // Choose SUSI as your default authority.
-        knownAuthorities: [b2cPolicies.authorityDomain], // Mark your B2C tenant's domain as trusted.
-        redirectUri: '/', // You must register this URI on Azure Portal/App Registration. Defaults to window.location.origin
-        postLogoutRedirectUri: '/', // Indicates the page to navigate after logout.
-        navigateToLoginRequestUrl: false, // If "true", will navigate back to the original request location before processing the auth code response.
+        clientId: 'f5b7e137-646f-46e4-b418-5d9065d07cd5',
+        authority: b2cPolicies.authorities.signUpSignIn.authority,
+        knownAuthorities: [b2cPolicies.authorityDomain],
+        redirectUri: '/',
+        postLogoutRedirectUri: '/',
+        navigateToLoginRequestUrl: false,
     },
     cache: {
-        cacheLocation: 'localStorage', // Configures cache location. "sessionStorage" is more secure, but "localStorage" gives you SSO between tabs.
-        storeAuthStateInCookie: false, // Set this to "true" if you are having issues on IE11 or Edge
+        cacheLocation: 'localStorage',
+        storeAuthStateInCookie: false,
     },
     system: {
         loggerOptions: {

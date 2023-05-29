@@ -12,13 +12,14 @@ export const Home = () => {
             <AuthenticatedTemplate>
                 {activeAccount ? (
                     <Container>
-                        <p>dashboard here</p>
                         <DashboardPage />
                     </Container>
                 ) : null}
             </AuthenticatedTemplate>
             <UnauthenticatedTemplate>
-                Unauthenticate template
+                <p className='text-center'>
+                    Please login to vote.
+                </p>
             </UnauthenticatedTemplate>
         </>
     );

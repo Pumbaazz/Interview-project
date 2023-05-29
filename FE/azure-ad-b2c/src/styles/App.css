@@ -35,3 +35,19 @@ footer {
 .profileButton {
   margin: .5rem .5rem;
 }
+
+.btn {
+  max-width: 150px;
+  background-color: #fff;
+  color: #001;
+  font-weight: 500;
+  transition: transform 0.2s cubic-bezier(0.235, 0, 0.05, 0.95);
+}
+
+.btn:hover {
+  transform: perspective(1px) scale3d(1.044, 1.044, 1) translateZ(0) !important;
+}
+
+.btn-dislike {
+  width: 150px;
+}
