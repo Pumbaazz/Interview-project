@@ -4,17 +4,21 @@ import "./styles/App.css";
 import { Register } from "./Components/Register";
 import { Login } from "./Components/Login";
 import { DashboardPage } from "./Components/Dashboard";
+import { useMsal, MsalProvider } from "@azure/msal-react";
+import { PublicClientApplication } from "@azure/msal-browser";
 
-function App() {
+const App = ({ instance }) => {
   return (
-    <Router>
-      <Routes>
-        <Route exact path="/" element={<Login />} />
-        <Route exact path="/sign-up" element={<Register />} />
-        <Route exact path="/dashboard" element={<DashboardPage />} />
-      </Routes>
-    </Router>
+    <MsalProvider instance={instance}>
+      <Router>
+        <Routes>
+          <Route exact path="/" element={<Login />} />
+          <Route exact path="/sign-up" element={<Register />} />
+          <Route exact path="/dashboard" element={<DashboardPage />} />
+        </Routes>
+      </Router>
+    </MsalProvider>
   );
-}
+};
 
 export default App;

@@ -56,7 +56,8 @@ export const DashboardPage = (props) => {
 
   // Handle logout button
   const handleLogout = () => {
-    localStorage.removeItem('jwtToken');
+    // localStorage.removeItem('jwtToken');
+    localStorage.clear();
     navigate("/");
   };
 
