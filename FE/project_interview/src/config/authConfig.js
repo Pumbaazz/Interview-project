@@ -99,8 +99,8 @@ export const msalConfig = {
         clientId: 'f5b7e137-646f-46e4-b418-5d9065d07cd5',
         authority: b2cPolicies.authorities.signUpSignIn.authority,
         knownAuthorities: [b2cPolicies.authorityDomain],
-        redirectUri: '/',
-        postLogoutRedirectUri: '/redirect',
+        redirectUri: '/dashboard',
+        postLogoutRedirectUri: '/',
         navigateToLoginRequestUrl: false,
     },
     cache: {

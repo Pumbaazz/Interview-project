@@ -3,8 +3,8 @@ import { useNavigate } from "react-router-dom";
 import '../styles/App.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { Button } from "react-bootstrap";
-// new import
-import { useMsal } from "@azure/msal-react";
+import { useEffect } from "react";
+import { useIsAuthenticated, useMsal } from "@azure/msal-react";
 import { loginRequest } from "../config/authConfig";
 
 export const Login = (props) => {
@@ -13,11 +13,17 @@ export const Login = (props) => {
   const [password, setPass] = useState("");
   const [errorMessage, setErrorMessage] = useState("");
   const { instance } = useMsal();
+  const isAuthenticated = useIsAuthenticated();
+
+  useEffect(() => {
+    if (isAuthenticated !== false) {
+      navigate("/dashboard");
+    }
+  }, [isAuthenticated]);
 
   const handleLoginRedirect = async () => {
     try {
       const loginPopupResponse = await instance.loginPopup(loginRequest);
-      navigate("/dashboard");
     } catch (error) {
       console.error(error);
     }

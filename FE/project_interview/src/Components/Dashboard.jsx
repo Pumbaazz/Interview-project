@@ -1,19 +1,23 @@
 import React, { useEffect, useState } from 'react';
-import jwtDecode from 'jwt-decode';
-import axios from 'axios';
-import '../styles/App.css';
 import { useNavigate } from 'react-router-dom';
+import axios from 'axios';
+import jwtDecode from 'jwt-decode';
+import { Button, Card, Col, Nav, Navbar, Row } from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import { Row, Col, Card, Navbar, Button, Nav } from 'react-bootstrap';
+import '../styles/App.css';
+import { useIsAuthenticated, useMsal } from "@azure/msal-react";
+
 
 export const DashboardPage = (props) => {
   const [userName, setUserName] = useState("");
   const [movies, setMovies] = useState([]);
+  const { instance } = useMsal();
+  const isAuthenticated = useIsAuthenticated();
   const navigate = useNavigate();
 
   // Hook get movies data.
   useEffect(() => {
-    fetch('https://localhost:7244/api/get-movies')
+    fetch(`${process.env.REACT_APP_BASE_URL}/api/get-movies`)
       .then(response => response.json())
       .then(data => setMovies(data));
   }, []);
@@ -31,7 +35,7 @@ export const DashboardPage = (props) => {
 
   // Handle action like button.
   const handleLike = (movie) => {
-    axios.patch(`https://localhost:7244/api/like/${movie.movieId}`)
+    axios.patch(`${process.env.REACT_APP_BASE_URL}/api/like/${movie.movieId}`)
       .then(response => {
         const updatedMovie = response.data;
         setMovies(movies.map(m => m.movieId === updatedMovie.movieId ? updatedMovie : m));
@@ -57,7 +61,13 @@ export const DashboardPage = (props) => {
   // Handle logout button
   const handleLogout = () => {
     // localStorage.removeItem('jwtToken');
-    localStorage.clear();
+    // localStorage.clear();
+    if (isAuthenticated){
+      instance.logoutRedirect();
+    }
+    else{
+      localStorage.removeItem('jwtToken');
+    }
     navigate("/");
   };
 
