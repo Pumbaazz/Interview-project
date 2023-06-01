@@ -5,7 +5,6 @@ import { Register } from "./Components/Register";
 import { Login } from "./Components/Login";
 import { DashboardPage } from "./Components/Dashboard";
 import { useMsal, MsalProvider } from "@azure/msal-react";
-import { PublicClientApplication } from "@azure/msal-browser";
 
 const App = ({ instance }) => {
   return (

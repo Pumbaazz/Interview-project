@@ -66,7 +66,7 @@ const tokenRequest = {
 };
 
 export const loginRequest = {
-    scopes: [...apiConfig.b2cScopes],
+    scopes: [...apiConfig.b2cScopes]
 };
 
 
@@ -79,8 +79,6 @@ export const b2cPolicies = {
     names: {
         signUpSignIn: 'B2C_1_signUpSignIn',
         // signUp: 'B2C_1_signUp '
-        // forgotPassword: 'B2C_1_reset_v3',
-        // editProfile: 'B2C_1_edit_profile_v2',
     },
     authorities: {
         signUpSignIn: {

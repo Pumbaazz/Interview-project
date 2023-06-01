@@ -24,11 +24,12 @@ export const Login = (props) => {
   const handleLoginRedirect = async () => {
     try {
       const loginPopupResponse = await instance.loginPopup(loginRequest);
+      return loginPopupResponse;
     } catch (error) {
       console.error(error);
     }
   };
-  
+
   const handleSubmit = (e) => {
     e.preventDefault();
     handleLogin(e);
@@ -46,9 +47,9 @@ export const Login = (props) => {
         body: json
       });
 
-      if (response.status === 200){
+      if (response.status === 200) {
         const data = await response.json();
-        localStorage.setItem('jwtToken', data.token);  
+        localStorage.setItem('jwtToken', data.token);
         navigate("/dashboard");
       }
       else {
@@ -94,7 +95,7 @@ export const Login = (props) => {
       <button className="link-btn" onClick={() => navigate("/sign-up")}>
         Don't have an account? Register here.
       </button>
-      <br/>
+      <br />
       <button type="button" className="btn btn-outline-primary" onClick={handleLoginRedirect}>
         Login with another account.
       </button>

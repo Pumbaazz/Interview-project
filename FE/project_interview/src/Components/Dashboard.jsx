@@ -7,7 +7,6 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import '../styles/App.css';
 import { useIsAuthenticated, useMsal } from "@azure/msal-react";
 
-
 export const DashboardPage = (props) => {
   const [userName, setUserName] = useState("");
   const [movies, setMovies] = useState([]);
@@ -15,25 +14,22 @@ export const DashboardPage = (props) => {
   const isAuthenticated = useIsAuthenticated();
   const navigate = useNavigate();
 
-  // Hook get movies data.
   useEffect(() => {
-    fetch(`${process.env.REACT_APP_BASE_URL}/api/get-movies`)
-      .then(response => response.json())
-      .then(data => setMovies(data));
+    getMovies()
+      .then((movies) => {
+        setMovies(movies);
+      })
+      .catch(error => console.error(error));
   }, []);
 
-  // Hook get user name from token.
   useEffect(() => {
-    const token = localStorage.getItem('jwtToken');
-    if (!token) {
-      navigate("/");
-      return;
-    }
-    const decoded = jwtDecode(token);
-    setUserName(decoded.Name);
-  }, [navigate]);
+    getUserInfo(isAuthenticated, instance)
+      .then((userName) => {
+        setUserName(userName);
+      })
+      .catch(error => console.error(error));
+  }, [isAuthenticated, instance]);
 
-  // Handle action like button.
   const handleLike = (movie) => {
     axios.patch(`${process.env.REACT_APP_BASE_URL}/api/like/${movie.movieId}`)
       .then(response => {
@@ -45,10 +41,8 @@ export const DashboardPage = (props) => {
       });
   };
 
-
-  // Handle action dislike button.
   const handleDislike = (movie) => {
-    axios.patch(`https://localhost:7244/api/dislike/${movie.movieId}`)
+    axios.patch(`${process.env.REACT_APP_BASE_URL}/api/dislike/${movie.movieId}`)
       .then(response => {
         const updatedMovie = response.data;
         setMovies(movies.map(m => m.movieId === updatedMovie.movieId ? updatedMovie : m));
@@ -58,14 +52,11 @@ export const DashboardPage = (props) => {
       });
   };
 
-  // Handle logout button
   const handleLogout = () => {
-    // localStorage.removeItem('jwtToken');
-    // localStorage.clear();
-    if (isAuthenticated){
+    if (isAuthenticated) {
       instance.logoutRedirect();
     }
-    else{
+    else {
       localStorage.removeItem('jwtToken');
     }
     navigate("/");
@@ -96,4 +87,31 @@ export const DashboardPage = (props) => {
       </Row>
     </div>
   );
+};
+
+const getMovies = () => {
+  return new Promise((resolve, reject) => {
+    fetch(`${process.env.REACT_APP_BASE_URL}/api/get-movies`)
+      .then(response => response.json())
+      .then(data => resolve(data))
+      .catch(error => reject(error));
+  });
+};
+
+const getUserInfo = (isAuthenticated, instance) => {
+  return new Promise((resolve, reject) => {
+    if (isAuthenticated) {
+      let activeAccount = instance.getActiveAccount();
+      const userName = activeAccount.name ?? "Unknown";
+      resolve(userName);
+    } else {
+      const token = localStorage.getItem("jwtToken");
+      if (!token) {
+        reject("Token not found");
+      } else {
+        const decoded = jwtDecode(token);
+        resolve(decoded.Name);
+      }
+    }
+  });
 };
